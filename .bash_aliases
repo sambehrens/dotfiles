@@ -13,6 +13,7 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias go='git checkout '
 alias gom='git checkout master'
+alias god='git checkout dev'
 alias gob='git checkout -b'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -24,6 +25,9 @@ alias gph='git push -u origin HEAD'
 alias gm='git merge'
 alias gmm='git merge master'
 alias gd='git diff'
+
+# navigation
+alias b='cd -'
 
 # vi
 alias vba='vi ~/.bash_aliases'
