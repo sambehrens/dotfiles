@@ -33,7 +33,7 @@ alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
 
 # dotfile aliases
-alias df='git -C ~ --git-dir ~/.dotfiles/ --work-tree=$HOME'
+alias df='git -C ~ --git-dir ~/.dotfiles/.git/ --work-tree=$HOME'
 alias dfd='df diff'
 alias dfds='df diff --staged'
 alias dfs='df status'

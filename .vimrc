@@ -3,6 +3,7 @@ imap jk <Esc>
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+syntax on
 colorscheme desert
 
 set number
