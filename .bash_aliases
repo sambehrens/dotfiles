@@ -37,6 +37,9 @@ alias sbp='. ~/.bash_profile'
 alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
 
+# background services
+alias mgo='mongod --config /usr/local/etc/mongod.conf'
+
 # dotfile aliases
 alias df='git -C ~ --git-dir ~/.dotfiles/.git/ --work-tree=$HOME'
 alias dfd='df diff'
