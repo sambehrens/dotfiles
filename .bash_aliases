@@ -36,6 +36,7 @@ alias vbp='vi ~/.bash_profile'
 alias sbp='. ~/.bash_profile'
 alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
+alias vrc='vi ~/.vimrc'
 
 # dotfile aliases
 alias df='git -C ~ --git-dir ~/.dotfiles/.git/ --work-tree=$HOME'
