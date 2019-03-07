@@ -44,6 +44,9 @@ alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
 alias vrc='vi ~/.vimrc'
 
+# scripts
+alias mkex='chmod +x'
+
 # background services
 alias mgo='mongod --config /usr/local/etc/mongod.conf'
 
