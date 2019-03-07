@@ -27,6 +27,7 @@ alias gm='git merge'
 alias gmm='git merge master'
 alias gd='git diff'
 alias grmc='git rm -r --cached .; git add .'
+alias gbsu='git branch --set-upstream-to'
 
 # navigation
 alias b='cd -'
