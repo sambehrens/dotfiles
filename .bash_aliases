@@ -31,6 +31,7 @@ alias grmc='git rm -r --cached .; git add .'
 alias gl='git log'
 alias glo='git log --oneline'
 alias glog='git log --oneline --graph'
+alias grs='git reset --soft HEAD^'
 
 # navigation
 alias b='cd -'
