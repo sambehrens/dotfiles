@@ -31,7 +31,14 @@ alias grmc='git rm -r --cached .; git add .'
 alias gl='git log'
 alias glo='git log --oneline'
 alias glog='git log --oneline --graph'
+alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
 alias grs='git reset --soft HEAD^'
+alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
+alias gamf='ga && git commit --amend --no-edit && gp --force'
+
+# reset branch to head
+alias grsh='git reset HEAD --hard'
+alias grso='git reset origin --hard'
 
 # navigation
 alias b='cd -'
@@ -47,9 +54,11 @@ alias vrc='vi ~/.vimrc'
 
 # scripts
 alias mkex='chmod +x'
+alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
 
 # background services
 alias mgo='mongod --config /usr/local/etc/mongod.conf'
+alias mpn='top | grep mongod'
 
 # dotfile aliases
 alias df='git -C ~ --git-dir ~/.dotfiles/.git/ --work-tree=$HOME'
