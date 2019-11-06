@@ -7,7 +7,7 @@ __git_complete gb _git_branch
 
 # git
 alias ga='git add .'
-alias gao'git add'
+alias gao='git add'
 alias gr='git reset .'
 alias gs='git status'
 alias gc='git commit'
