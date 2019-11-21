@@ -36,6 +36,7 @@ alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
 alias grs='git reset --soft HEAD^'
 alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
+alias gcp='git cherry-pick'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
