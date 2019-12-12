@@ -83,6 +83,7 @@ alias dot='dfca -m "Update dotfiles"; df pull; sbp; df push --quiet &'
 alias google='open -a "Google Chrome" https://www.google.com/search?q='
 alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
+alias me='cat ~/me'
 
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
