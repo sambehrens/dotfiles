@@ -85,6 +85,9 @@ alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
 
+# directories
+alias esof='cd ~/Documents/adv_esof'
+
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
