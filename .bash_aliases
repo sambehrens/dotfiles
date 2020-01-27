@@ -88,6 +88,10 @@ alias me='cat ~/me'
 # directories
 alias esof='cd ~/Documents/adv_esof'
 
+# ANTLR
+alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
