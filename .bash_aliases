@@ -85,6 +85,9 @@ alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
 
+# java stuff
+alias mcp='mvn clean package'
+
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
