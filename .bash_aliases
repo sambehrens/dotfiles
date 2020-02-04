@@ -6,8 +6,8 @@ __git_complete pl _git_pull
 __git_complete gb _git_branch
 
 # git
-alias ga='git add .'
-alias gao='git add'
+alias ga='git add'
+alias gaa='git add .'
 alias gr='git reset .'
 alias gs='git status'
 alias gc='git commit'
