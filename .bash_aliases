@@ -6,8 +6,8 @@ __git_complete pl _git_pull
 __git_complete gb _git_branch
 
 # git
-alias ga='git add .'
-alias gao='git add'
+alias ga='git add'
+alias gaa='git add .'
 alias gr='git reset .'
 alias gs='git status'
 alias gc='git commit'
@@ -84,6 +84,9 @@ alias google='open -a "Google Chrome" https://www.google.com/search?q='
 alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
+
+# java stuff
+alias mcp='mvn clean package'
 
 # directories
 alias esof='cd ~/Documents/adv_esof/esof422'

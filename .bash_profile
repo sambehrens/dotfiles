@@ -18,3 +18,7 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
 export PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/sbehrens/.sdkman"
+[[ -s "/Users/sbehrens/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/sbehrens/.sdkman/bin/sdkman-init.sh"
