@@ -86,9 +86,10 @@ alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
 
 # directories
-alias esof='cd ~/Documents/adv_esof'
+alias esof='cd ~/Documents/adv_esof/esof422'
 
 # ANTLR
+alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"'
 alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
 alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 
