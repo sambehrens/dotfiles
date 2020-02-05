@@ -90,6 +90,7 @@ alias mcp='mvn clean package'
 
 # directories
 alias esof='cd ~/Documents/adv_esof/esof422'
+alias gift='cd ~/Documents/giftgo'
 
 # ANTLR
 alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"'
