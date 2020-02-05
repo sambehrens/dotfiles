@@ -3,6 +3,7 @@
 # make exceptions for following files
 !.gitignore
 !.vimrc
+!.ideavimrc
 !.bashrc
 !.bash_aliases
 !.bash_profile
