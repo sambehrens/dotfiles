@@ -23,6 +23,7 @@ alias gbsu='git branch --set-upstream-to'
 alias gdeletemerged='git branch --merged | grep -v \* | xargs git branch -D'
 alias plo='git pull origin'
 alias gpl='git pull'
+alias gpls='git stash && gpl && git stash apply'
 alias gp='git push'
 alias gpsh='git push -u origin HEAD'
 alias gm='git merge'
@@ -93,9 +94,9 @@ alias esof='cd ~/Documents/adv_esof/esof422'
 alias gift='cd ~/Documents/giftgo'
 
 # ANTLR
-alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"'
-alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"'
+alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
