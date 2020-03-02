@@ -47,6 +47,7 @@ alias grso='git reset origin --hard'
 
 # navigation
 alias b='cd -'
+alias d='cd ~/Documents'
 
 # vi
 alias vba='vi ~/.bash_aliases'
