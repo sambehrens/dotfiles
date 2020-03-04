@@ -81,6 +81,9 @@ alias dfph='df push'
 alias dfsh='df show'
 alias dot='dfca -m "Update dotfiles"; df pull; sbp; df push --quiet &'
 
+# python stuff
+alias serv='python3 -m http.server 8080'
+
 # other fun stuff
 alias google='open -a "Google Chrome" https://www.google.com/search?q='
 alias shutdown='sudo shutdown now'
