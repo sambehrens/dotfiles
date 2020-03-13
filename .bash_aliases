@@ -24,7 +24,11 @@ alias gdeletemerged='git branch --merged | grep -v \* | xargs git branch -D'
 alias plo='git pull origin'
 alias gpl='git pull'
 alias gpls='git stash && gpl && git stash apply'
+<<<<<<< HEAD
 alias gplr='gpl -r'
+=======
+alias gf='git fetch --prune'
+>>>>>>> b9a0456355a7734254d4d2201c7816e8b3f217d3
 alias gp='git push'
 alias gpsh='git push -u origin HEAD'
 alias gm='git merge'
