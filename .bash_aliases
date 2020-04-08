@@ -67,6 +67,7 @@ alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
 # background services
 alias mgo='mongod --config /usr/local/etc/mongod.conf'
 alias mpn='top | grep mongod'
+alias ip='ifconfig | grep -A 4 en0 | grep "inet " | egrep -oh "([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}" | grep -m 1 ".*"'
 
 # dotfile aliases
 alias df='git -C ~ --git-dir ~/.dotfiles/.git/ --work-tree=$HOME'
