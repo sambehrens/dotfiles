@@ -95,6 +95,7 @@ alias me='cat ~/me'
 
 # java stuff
 alias mcp='mvn clean package'
+alias j8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version'
 
 # directories
 alias esof='cd ~/Documents/adv_esof/esof422'
