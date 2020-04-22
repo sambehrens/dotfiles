@@ -92,6 +92,7 @@ alias google='open -a "Google Chrome" https://www.google.com/search?q='
 alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
+alias ws='open -a Webstorm .'
 
 # java stuff
 alias mcp='mvn clean package'
