@@ -94,6 +94,7 @@ alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
 alias ws='open -a Webstorm .'
+alias pc='open -a Pycharm .'
 
 # java stuff
 alias mcp='mvn clean package'
