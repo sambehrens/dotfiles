@@ -28,4 +28,4 @@ export PATH
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/sbehrens/.sdkman"
 [[ -s "/Users/sbehrens/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/sbehrens/.sdkman/bin/sdkman-init.sh"
-export PATH="/usr/local/opt/node@12/bin:$PATH"
+# export PATH="/usr/local/opt/node@12/bin:$PATH"

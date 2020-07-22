@@ -58,6 +58,7 @@ alias b='cd -'
 alias d='cd ~/Documents'
 
 # vi
+alias v='vim'
 alias vba='vi ~/.bash_aliases'
 alias sba='. ~/.bash_aliases'
 alias vbp='vi ~/.bash_profile'
