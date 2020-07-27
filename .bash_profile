@@ -11,6 +11,7 @@ fi
 set completion-ignore-case On
 
 export EDITOR="vim"
+bind '"jk":"\e"'
 
 # Set bash editing to vim
 set -o vi
