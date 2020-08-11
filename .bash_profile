@@ -10,6 +10,21 @@ fi
 
 set completion-ignore-case On
 
+function exit_code() {
+    RED='\033[01;31m'
+    GRAY='\033[0;37m'
+    NC='\033[0m' # No Color
+
+    if [ $? -eq 0 ]
+    then
+        echo -e "${GRAY}$?${NC}"
+    else
+        echo -e "${RED}$?${NC}"
+    fi
+}
+
+export PS1="\[\033[0;37m\]\u\[\033[00m\]: \[\033[01;32m\]\w\[\033[00m\]\[\033[01;33m\]\$(__git_ps1)\[\033[00m\] \$? \$ "
+
 export EDITOR="vim"
 bind '"jk":"\e"'
 
