@@ -14,8 +14,13 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gcmi='gcm "Initial Commit"'
 alias go='git checkout '
+
+# find a branch and check it out
+function gof {
+    git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout
+}
+
 alias gom='git checkout master'
-alias god='git checkout dev'
 alias gob='git checkout -b'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -53,6 +58,7 @@ alias b='cd -'
 alias d='cd ~/Documents'
 
 # vi
+alias v='vim'
 alias vba='vi ~/.bash_aliases'
 alias sba='. ~/.bash_aliases'
 alias vbp='vi ~/.bash_profile'
