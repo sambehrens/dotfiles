@@ -115,6 +115,9 @@ alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
 alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 
+# Get pid of process using port 5000
+alias pid5='lsof -i tcp:5000'
+
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
