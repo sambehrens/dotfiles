@@ -2,6 +2,9 @@ source ~/.bashrc
 
 #[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
+# send dataminr home
+export DATAMINR_HOME=/Users/sbehrens/Library/Dataminr
+
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 if [ -f ~/.bash_aliases ]; then
@@ -15,15 +18,15 @@ function exit_code() {
     GRAY='\033[0;37m'
     NC='\033[0m' # No Color
 
-    if [ $? -eq 0 ]
+    if [ $1 -eq 0 ]
     then
-        echo -e "${GRAY}$?${NC}"
+        echo -e "${GRAY}$1${NC}"
     else
-        echo -e "${RED}$?${NC}"
+        echo -e "${RED}$1${NC}"
     fi
 }
 
-export PS1="\[\033[0;37m\]\u\[\033[00m\]: \[\033[01;32m\]\w\[\033[00m\]\[\033[01;33m\]\$(__git_ps1)\[\033[00m\] \$? \$ "
+export PS1="\[\033[0;37m\]\u\[\033[00m\]: \[\033[01;32m\]\w\[\033[00m\]\[\033[01;33m\]\$(__git_ps1)\[\033[00m\] \$(exit_code \$?) \$ "
 
 export EDITOR="vim"
 bind '"jk":"\e"'
