@@ -52,6 +52,9 @@ alias glm='git log --author="Behrens"'
 alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
 alias gcp='git cherry-pick'
+alias grb='git rebase'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
