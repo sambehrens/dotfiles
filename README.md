@@ -1,6 +1,6 @@
 # My dotfiles
 
-### Heavily based on Karl Molinas [dotfiles](https://github.com/karlmolina/dotfiles)
+### Heavily based on [Karl Molina](https://github.com/karlmolina)'s [dotfiles](https://github.com/karlmolina/dotfiles)
 _Thanks Karl!_
 
 Uses a git repository inside of $home with the command.
@@ -12,29 +12,11 @@ This changes the working directory to $home. And allows the .git directory to li
 
 See [how to manage your dotfiles with git](https://medium.hackinrio.com/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b).
 
-## Steps to initialize
+## Installation
 
-1. Go to the home directory.
 ```
-cd
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/sambehrens/dotfiles/master/.install_dot_files.sh)"
 ```
-
-2. Clone the repo to the .dotfiles directory.
-```
-git clone git@github.com:sambehrens/dotfiles.git .dotfiles
-```
-
-3. Reset your current files to the master branch. (Note: this will remove current changes so don't do this if you don't want that)
-```
-git --git-dir .dotfiles/.git --work-tree=. reset --hard master
-```
-
-4. Add custom git config file to global git config.
-```
-git config --global include.path .customgitconfig
-```
-
-5. Close and reopen bash.
 
 ## Updating dotfiles
 Use the following alias to commit, pull, source .bash_profile, and push all at once.
