@@ -15,6 +15,7 @@ function gof {
 
 alias gom='git checkout master'
 alias gob='git checkout -b'
+alias go-='git checkout -'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbsu='git branch --set-upstream-to'
