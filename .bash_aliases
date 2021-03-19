@@ -7,6 +7,7 @@ alias gcm='git commit -m'
 alias gcam='gc --amend'
 alias gcmi='gcm "Initial Commit"'
 alias go='git checkout '
+alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
 
 # find a branch and check it out
 function gof {
