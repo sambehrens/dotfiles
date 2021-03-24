@@ -56,7 +56,8 @@ alias grbi='git rebase --interactive'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias grbo='git rebase --onto'
-alias grbia='git rebase --interactive --autosquash'
+alias grbs='git rebase --autosquash'
+alias grbis='git rebase --interactive --autosquash'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
