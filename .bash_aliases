@@ -2,6 +2,7 @@
 alias ga='git add'
 alias gaa='git add .'
 alias gs='git status'
+alias gss='git status --short'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gcf='git commit --fixup'
