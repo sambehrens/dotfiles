@@ -52,9 +52,11 @@ alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
 alias gcp='git cherry-pick'
 alias grb='git rebase'
+alias grbi='git rebase --interactive'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias grbo='git rebase --onto'
+alias grbia='git rebase --interactive --autosquash'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
