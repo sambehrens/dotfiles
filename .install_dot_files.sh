@@ -16,6 +16,8 @@ brew install fzf
 
 brew install pyenv
 
+brew install bat
+
 $(brew --prefix)/opt/fzf/install
 
 source ~/.zshrc
