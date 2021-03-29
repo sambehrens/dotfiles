@@ -85,6 +85,7 @@ alias vrc='vi ~/.vimrc'
 # scripts
 alias mkex='chmod +x'
 alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
+alias cat='bat'
 
 # background services
 alias mgo='mongod --config /usr/local/etc/mongod.conf'
