@@ -61,8 +61,6 @@ alias grbi='git rebase --interactive'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias grbo='git rebase --onto'
-alias grbs='git rebase --autosquash'
-alias grbsa='git rebase --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
 alias grbis='git rebase --interactive --autosquash'
 alias grbisa='git rebase --interactive --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
 
