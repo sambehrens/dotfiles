@@ -63,6 +63,7 @@ alias grba='git rebase --abort'
 alias grbo='git rebase --onto'
 alias grbs='git rebase --autosquash'
 alias grbis='git rebase --interactive --autosquash'
+alias grbisa='git rebase --interactive --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
