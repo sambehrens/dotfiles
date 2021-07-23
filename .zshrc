@@ -140,3 +140,6 @@ zle -N self-insert url-quote-magic
 # stop globing with ? and *
 unsetopt nomatch
 
+# bat theme
+export BAT_THEME="Solarized (light)"
+
