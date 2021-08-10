@@ -1,16 +1,23 @@
 # git
 alias ga='git add'
-alias gaa='git add .'
+alias gaa='ga .'
+alias gap='git add --patch'
+
 alias gs='git status'
 alias gss='git status --short'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gcf='git commit --fixup'
+
+alias gc='git commit --verbose'
+alias gcm='gc -m'
+alias gcf='gc --fixup'
 alias gcfh='gcf HEAD'
 alias gcfa='gcf $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)'
 alias gcam='gc --amend'
 alias gcamn='gc --amend --no-edit'
 alias gcmi='gcm "Initial Commit"'
+
+alias gcy='yarn commit'
+alias gcyr='yarn commit --retry'
+
 alias go='git checkout '
 alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
 
@@ -27,6 +34,7 @@ alias gba='git branch -a'
 alias gbv='git branch -vv'
 alias gbav='git branch -a -vv'
 alias gbsu='git branch --set-upstream-to'
+alias gbrn='git branch -m'
 alias gdeletemerged='git branch --merged | grep -v \* | xargs git branch -D'
 alias plo='git pull origin'
 alias gpl='git pull'
@@ -46,13 +54,20 @@ alias gds='gd --staged'
 alias gr='git reset'
 alias gra='git reset .'
 alias grs='git reset --soft'
+alias grh='git reset --hard'
 alias grsh='git reset --soft HEAD^'
 alias grmc='git rm -r --cached .; git add .'
-alias gl='git log'
-alias glo='git log --oneline'
+alias gl='git log --oneline -n 15'
+alias glv='git log'
 alias glog='git log --oneline --graph'
 alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
-alias glm='git log --author="Behrens"'
+
+# log changes to a line
+function gll() {
+    git log -L $1,$1:$2
+}
+
+alias glme='git log --author="Behrens"'
 alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
 alias gcp='git cherry-pick'
@@ -62,6 +77,7 @@ alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias grbo='git rebase --onto'
 alias grbis='git rebase --interactive --autosquash'
+alias grbism='git rebase --interactive --autosquash master'
 alias grbisa='git rebase --interactive --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
 
 # reset branch to head
@@ -133,6 +149,13 @@ alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 
 # Get pid of process using port 5000
 alias pid5='lsof -i tcp:5000'
+
+# npm
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
+
+# lerna
+alias lnab='printf "n\n" | yarn lerna publish --no-git-tag-version --no-push --yes=0'
 
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then

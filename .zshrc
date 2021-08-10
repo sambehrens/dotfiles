@@ -75,12 +75,13 @@ plugins=(
     git
     zsh-autosuggestions
     docker
-    fzf
-    fzf-tab
     z
     nvm
     pyenv
     npm
+    vi-mode
+    fzf
+    fzf-tab
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,7 +104,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
 # Escape with jk in terminal
-bindkey jk vi-cmd-mode
+# commented out because i'm trying to get used to ctrl + [
+# bindkey jk vi-cmd-mode
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -115,6 +117,8 @@ bindkey jk vi-cmd-mode
 
 source ~/.zsh_aliases
 source ~/.bash_aliases
+
+source ~/.fzfgitfunctions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
@@ -141,3 +145,12 @@ zle -N self-insert url-quote-magic
 # stop globing with ? and *
 unsetopt nomatch
 
+# bat theme
+export BAT_THEME="Solarized (light)"
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
+
+# vi-mode plugin
+# set cursor to insert mode
+VI_MODE_SET_CURSOR=true
