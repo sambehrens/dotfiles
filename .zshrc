@@ -81,7 +81,6 @@ plugins=(
     pyenv
     npm
     vi-mode
-    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -146,6 +145,9 @@ unsetopt nomatch
 
 # bat theme
 export BAT_THEME="Solarized (light)"
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 
 # vi-mode plugin
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
