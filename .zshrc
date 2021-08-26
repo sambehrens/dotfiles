@@ -74,13 +74,13 @@ plugins=(
     git
     zsh-autosuggestions
     docker
-    fzf
-    fzf-tab
     z
     nvm
     pyenv
     npm
     vi-mode
+    fzf
+    fzf-tab
 )
 
 source $ZSH/oh-my-zsh.sh
