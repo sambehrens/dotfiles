@@ -80,6 +80,8 @@ plugins=(
     nvm
     pyenv
     npm
+    vi-mode
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,6 +117,8 @@ bindkey jk vi-cmd-mode
 source ~/.zsh_aliases
 source ~/.bash_aliases
 
+source ~/.fzfgitfunctions.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
 
@@ -143,3 +147,7 @@ unsetopt nomatch
 # bat theme
 export BAT_THEME="Solarized (light)"
 
+# vi-mode plugin
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+# set cursor to insert mode
+VI_MODE_SET_CURSOR=true
