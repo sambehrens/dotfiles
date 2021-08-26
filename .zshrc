@@ -150,6 +150,5 @@ export BAT_THEME="Solarized (light)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 
 # vi-mode plugin
-VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # set cursor to insert mode
 VI_MODE_SET_CURSOR=true
