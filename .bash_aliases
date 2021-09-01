@@ -54,7 +54,13 @@ alias gl='git log'
 alias glo='git log --oneline'
 alias glog='git log --oneline --graph'
 alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
-alias glm='git log --author="Behrens"'
+
+# log changes to a line
+function gll() {
+    git log -L $1,$1:$2
+}
+
+alias glme='git log --author="Behrens"'
 alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
 alias gcp='git cherry-pick'
