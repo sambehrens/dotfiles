@@ -21,7 +21,7 @@ syntax on
 set cursorline
 " Show line numbers
 set number
-set tabstop=4
+set tabstop=2
 set expandtab
 set shiftwidth=4
 set smartindent
