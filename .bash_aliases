@@ -2,8 +2,10 @@
 alias ga='git add'
 alias gaa='ga .'
 alias gap='git add --patch'
+
 alias gs='git status'
 alias gss='git status --short'
+
 alias gc='git commit --verbose'
 alias gcm='gc -m'
 alias gcf='gc --fixup'
@@ -12,6 +14,9 @@ alias gcfa='gcf $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)'
 alias gcam='gc --amend'
 alias gcamn='gc --amend --no-edit'
 alias gcmi='gcm "Initial Commit"'
+alias gcy='yarn commit'
+alias gcyr='yarn commit --retry'
+
 alias go='git checkout '
 alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
 
