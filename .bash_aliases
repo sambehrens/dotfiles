@@ -14,6 +14,7 @@ alias gcfa='gcf $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)'
 alias gcam='gc --amend'
 alias gcamn='gc --amend --no-edit'
 alias gcmi='gcm "Initial Commit"'
+
 alias gcy='yarn commit'
 alias gcyr='yarn commit --retry'
 
@@ -152,6 +153,9 @@ alias pid5='lsof -i tcp:5000'
 # npm
 alias ng="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
+
+# lerna
+alias lnab='printf "n\n" | yarn lerna publish --no-git-tag-version --no-push --yes=0'
 
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
