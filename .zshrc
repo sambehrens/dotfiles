@@ -103,7 +103,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
 # Escape with jk in terminal
-bindkey jk vi-cmd-mode
+# commented out because i'm trying to get used to ctrl + [
+# bindkey jk vi-cmd-mode
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

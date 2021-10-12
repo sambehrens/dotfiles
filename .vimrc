@@ -10,7 +10,7 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 " map jk to escape
-imap jk <Esc>
+" imap jk <Esc>
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
