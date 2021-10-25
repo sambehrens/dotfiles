@@ -149,6 +149,7 @@ alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 
 # Get pid of process using port 5000
 alias pid5='lsof -i tcp:5000'
+alias kino='kill $(pid5 | grep -Eo "[0-9]{1,5}" | head -1)'
 
 # npm
 alias ng="npm list -g --depth=0 2>/dev/null"
