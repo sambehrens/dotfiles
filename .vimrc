@@ -97,6 +97,12 @@ nnoremap <leader>T otest('', () => {});<Esc>F}i<CR><Esc>kf'a
 nnoremap <leader>c oconst  = {};<Esc>F}i<CR><Esc>kf a
 " Inserts type object
 nnoremap <leader>t otype  = {};<Esc>F}i<CR><Esc>kf a
+" Inserts if statement
+nnoremap <leader>if oif () {}<Esc>i<CR><Esc>kf(a
+" Inserts an else if statement
+nnoremap <leader>eif oelse if () {}<Esc>i<CR><Esc>kf(a
+" Inserts an else statement
+nnoremap <leader>el oelse {}<Esc>i<CR>
 
 " vim-plug plugin manager
 " see mappings below 
