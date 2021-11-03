@@ -103,16 +103,6 @@ source $ZSH/oh-my-zsh.sh
 # Set editor as vim
 export EDITOR='vim'
 
-# make ctrl [ faster by removing all multikey bindings starting with ctrl [
-bindkey -rpM viins '^['
-bindkey -rpM vicmd '^['
-
-# Easier bindings than going to cmd mode then pressing j or k
-bindkey -M main '^K' up-history
-bindkey -M main '^J' down-history
-bindkey -M vicmd '^K' up-history
-bindkey -M vicmd '^J' down-history
-
 # Escape with jk in terminal
 # commented out because i'm trying to get used to ctrl + [
 # bindkey jk vi-cmd-mode
@@ -147,7 +137,15 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 
 bindkey -M menuselect '?' history-incremental-search-forward
 
-bindkey '^k' end-of-line
+# make ctrl [ faster by removing all multikey bindings starting with ctrl [
+bindkey -rpM viins '^['
+bindkey -rpM vicmd '^['
+
+# Easier bindings than going to cmd mode then pressing j or k
+bindkey -M main '^K' up-history
+bindkey -M main '^J' down-history
+bindkey -M vicmd '^K' up-history
+bindkey -M vicmd '^J' down-history
 
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
