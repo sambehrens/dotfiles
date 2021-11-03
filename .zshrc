@@ -77,7 +77,6 @@ plugins=(
     docker
     z
     nvm
-    pyenv
     npm
     vi-mode
     fzf
