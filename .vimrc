@@ -77,6 +77,8 @@ nnoremap <leader>b :Buffers<CR>
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
 
+nnoremap <leader>3 :norm i# 
+
 " Quick code shortcuts
 " JS
 " Insert function on next line and enter insert mode at name of function
