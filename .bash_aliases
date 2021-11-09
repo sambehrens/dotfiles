@@ -57,6 +57,8 @@ alias gra='git reset .'
 alias grs='git reset --soft'
 alias grh='git reset --hard'
 alias grsh='git reset --soft HEAD^'
+# reset to upstream branch
+alias grhu='git reset --hard @{upstream}'
 alias grmc='git rm -r --cached .; git add .'
 alias gl='git log --oneline -n 15'
 alias glv='git log'
