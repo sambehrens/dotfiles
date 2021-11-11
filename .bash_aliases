@@ -161,6 +161,10 @@ alias nl="npm list --depth=0 2>/dev/null"
 # lerna
 alias lnab='printf "n\n" | yarn lerna publish --no-git-tag-version --no-push --yes=0'
 
+alias cr='cargo run'
+alias cc='cargo check'
+alias cb='cargo build'
+
 # computer specific aliases
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
