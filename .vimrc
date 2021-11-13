@@ -113,6 +113,9 @@ call plug#begin('~/.vim/plugged')
 " color scheme
 Plug 'NLKNguyen/papercolor-theme'
 
+" rust official vim plugin
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " Colors!
