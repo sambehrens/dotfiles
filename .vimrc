@@ -63,6 +63,9 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
+" Quick save
+nnoremap <leader>w :w<CR>
+
 " Undo tree
 nnoremap <leader>u :UndotreeToggle<CR>
 
@@ -77,7 +80,13 @@ nnoremap <leader>b :Buffers<CR>
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
 
-nnoremap <leader>3 :norm i# 
+" comment out stuff easily
+nnoremap <leader>1 :norm ^xxx<CR>
+nnoremap <leader>2 :norm I# <CR>
+nnoremap <leader>3 :norm I// <CR>
+
+" rust stuff
+nnoremap <leader>cr :Crun<CR>
 
 " Quick code shortcuts
 " JS
@@ -113,10 +122,23 @@ call plug#begin('~/.vim/plugged')
 " color scheme
 Plug 'NLKNguyen/papercolor-theme'
 
+" syntastic syntax checking
+Plug 'vim-syntastic/syntastic'
+
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
+
+" Syntastic beginner configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Colors!
 set background=light
