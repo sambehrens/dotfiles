@@ -54,9 +54,22 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" coc window navigation
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Leader key stuff
 " Set leader key to Space
 let mapleader =  " "
+
+" Coc Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -87,6 +100,7 @@ nnoremap <leader>3 :norm I// <CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
+nnoremap <leader>rf :RustFmt<CR>
 
 " Quick code shortcuts
 " JS
@@ -128,6 +142,12 @@ Plug 'vim-syntastic/syntastic'
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
 
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" nerd commenter so I can easily comment lines out
+Plug 'preservim/nerdcommenter'
+
 call plug#end()
 
 " Syntastic beginner configuration
@@ -139,6 +159,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Nerd commenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " Colors!
 set background=light
