@@ -170,3 +170,12 @@ alias cb='cargo build'
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
 fi
+
+# advent of code helpers
+function day () {
+    cd ~/Documents/rust;
+    cargo new advent_day_$1_q1
+    cargo new advent_day_$1_q2
+    cp -v ~/Documents/rust/advent_template.rs ~/Documents/rust/advent_day_$1_q1/src/main.rs
+    cd ~/Documents/rust/advent_day_$1_q1
+}

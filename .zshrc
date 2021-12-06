@@ -153,7 +153,7 @@ zle -N self-insert url-quote-magic
 unsetopt nomatch
 
 # bat theme
-export BAT_THEME="Solarized (light)"
+export BAT_THEME="Coldark-Cold"
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
