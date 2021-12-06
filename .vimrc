@@ -33,11 +33,17 @@ set rnu nu
 " Always show sign column
 " set signcolumn=yes
 
+" Keep the cursor away from the edge of the page
+set scrolloff=4
+
 set tabstop=2
 set expandtab
 set shiftwidth=4
 set smartindent
 set fileformat=unix
+
+" use spell checking
+setlocal spell spelllang=en_us
 
 " Move cursor to word when searching
 set incsearch
@@ -127,9 +133,9 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gc <Plug>(coc-git-commit)
 " undo chunk
-nmap gu :CocCommand git.chunkUndo
+nmap gu :CocCommand git.chunkUndo<CR>
 " open current line in browser
-nmap bo :CocCommand git.browserOpen
+nmap bo :CocCommand git.browserOpen<CR>
 " End Coc Stuff
 
 " Window navigation
@@ -149,7 +155,6 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " fzf
 nnoremap <leader>f :GFiles<CR>
-nnoremap <C-p> ZZ<CR>
 nnoremap <leader>b :Buffers<CR>
 
 " Ripgrep search
@@ -157,6 +162,25 @@ nnoremap <leader>F :Rg<CR>
 
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
+
+" Toggle Netrw file explorer
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+noremap <leader>e :call ToggleNetrw()<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
@@ -170,9 +194,6 @@ call plug#begin('~/.vim/plugged')
 " color scheme
 Plug 'NLKNguyen/papercolor-theme'
 
-" syntastic syntax checking
-" Plug 'vim-syntastic/syntastic'
-
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
 
@@ -185,17 +206,11 @@ Plug 'preservim/nerdcommenter'
 " airline for the bar at the bottom of vim window
 Plug 'vim-airline/vim-airline'
 
+" Fuzzy searching
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
-
-" Syntastic beginner configuration
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
 
 " coc.nvim
 let g:coc_global_extensions = [
@@ -215,6 +230,20 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
+" Netrw file explorer settings
+" Use a tree view
+let g:netrw_liststyle = 3
+" Hide top banner
+let g:netrw_banner = 0
+" Set the file explorer to 25% of the page width
+let g:netrw_winsize = 25
+" Open files in vertical window
+let g:netrw_browse_split = 4
+
 " Colors!
 set background=light
 colorscheme PaperColor
+
+" Set colors for spell check (has to be after colorscheme and set background)
+hi clear SpellBad
+hi SpellBad cterm=underline
