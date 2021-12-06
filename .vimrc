@@ -18,6 +18,11 @@ autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
 
 syntax on
+" Use all 256 colors
+set t_Co=256
+"
+" default updatetime 4000ms is not good for async update
+set updatetime=100
 
 " Highlight line with cursor
 set cursorline
@@ -69,7 +74,22 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
@@ -122,41 +142,13 @@ nnoremap <leader>b :Buffers<CR>
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
 
-" comment out stuff easily
-nnoremap <leader>1 :norm ^xxx<CR>
-nnoremap <leader>2 :norm I# <CR>
-nnoremap <leader>3 :norm I// <CR>
+" close windows faster with ctrl x
+nnoremap <leader>x :close<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
-" Quick code shortcuts
-" JS
-" Insert function on next line and enter insert mode at name of function
-nnoremap <leader>f ofunction () {}<Esc>i<CR><Esc>kf a
-" Insert exported function on next line "..."
-nnoremap <leader>ef oexport function () {}<Esc>i<CR><Esc>k2f a
-" Insert arrow function at cursor
-nnoremap <leader>af i() => 
-" Insert arrow function with brackets
-nnoremap <leader>ab i() => {}<Esc>i
-" Insert arrow function with brackets and params
-nnoremap <leader>ap i() => {}<Esc>6hi
-" Insert event handler arrow function
-nnoremap <leader>eh i(event) => 
-" Inserts test i.e. test('', () => {});
-nnoremap <leader>T otest('', () => {});<Esc>F}i<CR><Esc>kf'a
-" Inserts const object
-nnoremap <leader>c oconst  = {};<Esc>F}i<CR><Esc>kf a
-" Inserts type object
-nnoremap <leader>t otype  = {};<Esc>F}i<CR><Esc>kf a
-" Inserts if statement
-nnoremap <leader>if oif () {}<Esc>i<CR><Esc>kf(a
-" Inserts an else if statement
-nnoremap <leader>eif oelse if () {}<Esc>i<CR><Esc>kf(a
-" Inserts an else statement
-nnoremap <leader>el oelse {}<Esc>i<CR>
 
 " vim-plug plugin manager
 " see mappings below 
@@ -166,7 +158,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 
 " syntastic syntax checking
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
@@ -177,17 +169,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " nerd commenter so I can easily comment lines out
 Plug 'preservim/nerdcommenter'
 
+" airline for the bar at the bottom of vim window
+Plug 'vim-airline/vim-airline'
+
 call plug#end()
 
 " Syntastic beginner configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 " coc.nvim
 let g:coc_global_extensions = [
