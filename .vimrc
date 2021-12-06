@@ -40,12 +40,14 @@ set scrolloff=4
 
 set tabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
+set softtabstop=2
+set autoindent
 set smartindent
 set fileformat=unix
 
-" use spell checking
-setlocal spell spelllang=en_us
+" File type specific tab sizes
+autocmd FileType rust setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " Move cursor to word when searching
 set incsearch
@@ -61,7 +63,7 @@ set mouse=a
 set clipboard=unnamed
 
 " Color the 80 column light grey
-set colorcolumn=80
+set colorcolumn=80,100
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Get that filetype stuff happening
@@ -76,6 +78,12 @@ let mapleader =  " "
 " Coc stuff
 " Coc Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Coc do code action
+" Applying codeAction to the selected region.
+" Note the 'j' is to make the hint window go away
+xmap <leader>do <Plug>(coc-codeaction-selected)j
+nmap <leader>do <Plug>(coc-codeaction-selected)j
 
 " Coc window navigation
 inoremap <C-j> <Down>
@@ -148,11 +156,11 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " fzf
-nnoremap <leader>f :GFiles<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>o :GFiles<CR>
+nnoremap <leader>i :Buffers<CR>
 
 " Ripgrep search
-nnoremap <leader>F :Rg<CR>
+nnoremap <leader>f :Rg<CR>
 
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
@@ -203,9 +211,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Prettier
-" post install (yarn install | npm install) then load plugin only for editing supported files
-Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+" Make styled-components look good
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 call plug#end()
 
@@ -217,7 +224,16 @@ let g:coc_global_extensions = [
       \'coc-python',
       \'coc-json', 
       \'coc-rust-analyzer',
+      \'coc-tsserver',
+      \'coc-eslint',
+      \'coc-prettier',
       \]
+
+" Prettier setup
+" Allows you to call :Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Run prettier
+nnoremap <leader>p :Prettier<CR>
 
 " Nerd commenter
 " Add spaces after comment delimiters by default
@@ -240,7 +256,3 @@ let g:netrw_browse_split = 4
 " Colors!
 set background=light
 colorscheme PaperColor
-
-" Set colors for spell check (has to be after colorscheme and set background)
-hi clear SpellBad
-hi SpellBad cterm=underline

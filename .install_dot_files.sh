@@ -22,3 +22,4 @@ $(brew --prefix)/opt/fzf/install
 
 source ~/.zshrc
 
+brew install ripgrep
