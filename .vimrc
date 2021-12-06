@@ -119,6 +119,19 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" navigate conflicts of current buffer
+nmap [c <Plug>(coc-git-prevconflict)
+nmap ]c <Plug>(coc-git-nextconflict)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
+" undo chunk
+nmap gu :CocCommand git.chunkUndo
+" open current line in browser
+nmap bo :CocCommand git.browserOpen
+" End Coc Stuff
+
 " Window navigation
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -188,6 +201,7 @@ call plug#end()
 let g:coc_global_extensions = [
       \'coc-highlight',
       \'coc-pairs',
+      \'coc-git',
       \'coc-python',
       \'coc-json', 
       \'coc-rust-analyzer',
