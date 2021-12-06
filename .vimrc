@@ -30,8 +30,10 @@ set cursorline
 " Show line numbers
 " turn relative line numbers on
 set rnu nu
-" Always show sign column
-" set signcolumn=yes
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
 " Keep the cursor away from the edge of the page
 set scrolloff=4
@@ -80,14 +82,6 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -186,7 +180,6 @@ noremap <leader>e :call ToggleNetrw()<CR>
 nnoremap <leader>cr :Crun<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
-
 " vim-plug plugin manager
 " see mappings below 
 call plug#begin('~/.vim/plugged')
@@ -209,6 +202,10 @@ Plug 'vim-airline/vim-airline'
 " Fuzzy searching
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" Prettier
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
 call plug#end()
 
