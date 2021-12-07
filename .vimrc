@@ -135,7 +135,7 @@ nmap gc <Plug>(coc-git-commit)
 " undo chunk
 nmap gu :CocCommand git.chunkUndo<CR>
 " open current line in browser
-nmap bo :CocCommand git.browserOpen<CR>
+nmap gb :CocCommand git.browserOpen<CR>
 " End Coc Stuff
 
 " Window navigation
