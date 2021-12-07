@@ -18,9 +18,7 @@ autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
 
 syntax on
-" Use all 256 colors
-set t_Co=256
-"
+
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 
@@ -214,6 +212,9 @@ Plug 'junegunn/fzf.vim'
 " Make styled-components look good
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
+" better syntax highlighting and indentation
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 " coc.nvim
@@ -254,5 +255,8 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 
 " Colors!
+if (has("termguicolors"))
+    set termguicolors
+  endif
 set background=light
 colorscheme PaperColor
