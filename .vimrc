@@ -18,6 +18,8 @@ autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
 
 syntax on
+" Use new regular expression engine
+set re=0
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
@@ -187,7 +189,7 @@ nnoremap <leader>cr :Crun<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
 " Show highlight groups at cursor
-nmap <leader>hg :call <SID>SynStack()<CR>
+nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
