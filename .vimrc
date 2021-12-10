@@ -21,8 +21,17 @@ syntax on
 " Use new regular expression engine
 set re=0
 
+" automatically reload file when changes happen outside
+set autoread
+" automatically write when you move to a different file/buffer
+set autowriteall
+:au FocusLost * silent! wa
+
 " default updatetime 4000ms is not good for async update
 set updatetime=100
+"
+" Set keycode delays to 0 so CTRL-[ updates immediately
+set timeoutlen=1000 ttimeoutlen=0
 
 " Highlight line with cursor
 set cursorline
@@ -47,7 +56,7 @@ set smartindent
 set fileformat=unix
 
 " File type specific tab sizes
-autocmd FileType rust setlocal shiftwidth=4 softtabstop=4 expandtab
+autocmd FileType rust setlocal shiftwidth=4 softtabstop=4
 
 " Move cursor to word when searching
 set incsearch
