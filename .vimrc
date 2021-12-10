@@ -169,14 +169,14 @@ nnoremap <leader>o :GFiles<CR>
 nnoremap <leader>i :Buffers<CR>
 
 " Ripgrep search
-nnoremap <leader>f :Rg<CR>
+nnoremap <leader>F :Rg<CR>
 
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
 
 " Toggle Netrw file explorer
 let g:NetrwIsOpen=0
-function! ToggleNetrw()
+function! ToggleNetrw(type)
     if g:NetrwIsOpen
         let i = bufnr("$")
         while (i >= 1)
@@ -188,10 +188,16 @@ function! ToggleNetrw()
         let g:NetrwIsOpen=0
     else
         let g:NetrwIsOpen=1
-        silent Lexplore
+        if (a:type == "0")
+            silent Lexplore
+        endif
+        if (a:type == "1")
+            silent Vexplore
+        endif
     endif
 endfunction
-noremap <leader>e :call ToggleNetrw()<CR>
+noremap <leader>e :call ToggleNetrw("0")<CR>
+noremap <leader>f :call ToggleNetrw("1")<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
