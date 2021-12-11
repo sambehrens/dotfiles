@@ -61,6 +61,9 @@ autocmd FileType rust setlocal shiftwidth=4 softtabstop=4
 " Move cursor to word when searching
 set incsearch
 
+" Enable the enhanced completion thing for commands
+set wildmenu
+
 " Ignore case when searching unless search contains uppercase
 set ignorecase
 set smartcase
@@ -285,9 +288,7 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 
 " Colors!
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors
 set background=light
 colorscheme github
 let g:airline_theme = "dark"
