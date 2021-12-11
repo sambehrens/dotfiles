@@ -221,6 +221,7 @@ call plug#begin('~/.vim/plugged')
 
 " color scheme
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'cormacrelf/vim-colors-github'
 
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
@@ -289,20 +290,21 @@ if (has("termguicolors"))
 endif
 set background=light
 colorscheme PaperColor
+colorscheme github
 " typescript extra colors because PaperColor kinda sucks for typescript
-hi typescriptCastKeyword ctermfg=166
-hi typescriptAliasDeclaration ctermfg=238
-hi typescriptUnion ctermfg=238
-hi typescriptObjectType ctermfg=91
-hi typescriptMember ctermfg=91
-hi typescriptObjectLabel ctermfg=91
-hi typescriptImport ctermfg=31
-hi typescriptConsoleMethod ctermfg=166
-hi typescriptGlobal ctermfg=162
-hi typescriptParens ctermfg=238
-hi typescriptExport ctermfg=31
-hi typescriptFuncKeyword ctermfg=31
-hi typescriptAliasKeyword ctermfg=31
-hi typescriptCall ctermfg=238
-hi typescriptProp ctermfg=162
-hi typescriptStatementKeyword ctermfg=31
+" hi typescriptCastKeyword ctermfg=166
+" hi typescriptAliasDeclaration ctermfg=238
+" hi typescriptUnion ctermfg=238
+" hi typescriptObjectType ctermfg=91
+" hi typescriptMember ctermfg=91
+" hi typescriptObjectLabel ctermfg=91
+" hi typescriptImport ctermfg=31
+" hi typescriptConsoleMethod ctermfg=166
+" hi typescriptGlobal ctermfg=162
+" hi typescriptParens ctermfg=238
+" hi typescriptExport ctermfg=31
+" hi typescriptFuncKeyword ctermfg=31
+" hi typescriptAliasKeyword ctermfg=31
+" hi typescriptCall ctermfg=238
+" hi typescriptProp ctermfg=162
+" hi typescriptStatementKeyword ctermfg=31
