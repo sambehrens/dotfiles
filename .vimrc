@@ -289,8 +289,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 set background=light
-colorscheme PaperColor
 colorscheme github
+let g:airline_theme = "dark"
 " typescript extra colors because PaperColor kinda sucks for typescript
 " hi typescriptCastKeyword ctermfg=166
 " hi typescriptAliasDeclaration ctermfg=238
