@@ -220,7 +220,6 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 call plug#begin('~/.vim/plugged')
 
 " color scheme
-" Plug 'NLKNguyen/papercolor-theme'
 Plug 'NLKNguyen/papercolor-theme'
 
 " rust official vim plugin
@@ -286,8 +285,8 @@ let g:netrw_browse_split = 4
 
 " Colors!
 if (has("termguicolors"))
-    set termguicolors
-  endif
+  set termguicolors
+endif
 set background=light
 colorscheme PaperColor
 " typescript extra colors because PaperColor kinda sucks for typescript
