@@ -170,6 +170,7 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 " fzf
 nnoremap <leader>o :GFiles<CR>
 nnoremap <leader>i :Buffers<CR>
+nnoremap <leader>u <C-^>
 
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
@@ -267,7 +268,7 @@ let g:coc_global_extensions = [
 " Allows you to call :Prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Run prettier
-nnoremap <leader>p :Prettier<CR>
+nnoremap <leader>pp :Prettier<CR>
 
 " Nerd commenter
 " Add spaces after comment delimiters by default
@@ -288,10 +289,10 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 
 " Colors!
-set termguicolors
 set background=light
 colorscheme github
 let g:airline_theme = "dark"
+set termguicolors
 " typescript extra colors because PaperColor kinda sucks for typescript
 " hi typescriptCastKeyword ctermfg=166
 " hi typescriptAliasDeclaration ctermfg=238
