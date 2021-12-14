@@ -70,6 +70,8 @@ set smartcase
 
 " Of course I want to be able to use a mouse!
 set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
 
 " Copy to system clipboard with yank
 set clipboard=unnamed
