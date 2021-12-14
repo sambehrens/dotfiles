@@ -310,3 +310,5 @@ set termguicolors
 " hi typescriptCall ctermfg=238
 " hi typescriptProp ctermfg=162
 " hi typescriptStatementKeyword ctermfg=31
+hi typescriptString ctermfg=28
+hi typescriptStringLiteralType ctermfg=28
