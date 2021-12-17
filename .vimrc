@@ -337,3 +337,4 @@ set termguicolors
 hi typescriptString ctermfg=28
 hi typescriptStringLiteralType ctermfg=28
 hi typescriptTemplate ctermfg=28
+hi CocErrorHighlight ctermbg=225
