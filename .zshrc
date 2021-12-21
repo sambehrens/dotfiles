@@ -161,3 +161,5 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 # vi-mode plugin
 # set cursor to insert mode
 VI_MODE_SET_CURSOR=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
