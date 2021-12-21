@@ -29,9 +29,11 @@ set autowriteall
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
-"
+
 " Set keycode delays to 0 so CTRL-[ updates immediately
 set timeoutlen=1000 ttimeoutlen=0
+
+set nocompatible
 
 " Highlight line with cursor
 set cursorline
@@ -106,6 +108,9 @@ set colorcolumn=80,100
 filetype on
 filetype plugin on
 filetype indent on
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
 " Leader key stuff
 " Set leader key to Space
@@ -277,22 +282,36 @@ call plug#end()
 
 " coc.nvim
 let g:coc_global_extensions = [
-      \'coc-highlight',
-      \'coc-pairs',
-      \'coc-git',
-      \'coc-python',
-      \'coc-json', 
-      \'coc-rust-analyzer',
-      \'coc-tsserver',
-      \'coc-eslint',
-      \'coc-prettier',
-      \]
+    \'coc-highlight',
+    \'coc-pairs',
+    \'coc-git',
+    \'coc-python',
+    \'coc-json', 
+    \'coc-rust-analyzer',
+    \'coc-tsserver',
+    \'coc-eslint',
+    \'coc-prettier',
+    \'coc-jest',
+    \]
+call coc#config('jest', {
+    \ 'customFlags': ['--coverage=false'],
+    \})
+
 
 " Prettier setup
 " Allows you to call :Prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Run prettier
 nnoremap <leader>pp :Prettier<CR>
+
+" Jest setup
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+nnoremap <leader>tf :JestCurrent<CR>
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 " Nerd commenter
 " Add spaces after comment delimiters by default
