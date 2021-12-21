@@ -18,6 +18,8 @@ autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
 
 syntax on
+" Set mdx syntax because it doesn't seem to work
+au BufReadPost *.mdx set filetype=mdx
 " Use new regular expression engine
 set re=0
 
