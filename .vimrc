@@ -189,6 +189,9 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
+" Fix syntax highlighting for typescript template strings
+nnoremap <leader>ss :syntax sync fromstart<CR>
+
 " Quick save
 nnoremap <leader>w :w<CR>
 
@@ -279,6 +282,9 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " better syntax highlighting and indentation
 Plug 'sheerun/vim-polyglot'
+
+" typescript styntax stuff
+" Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
