@@ -361,9 +361,11 @@ set termguicolors
 " hi typescriptCall ctermfg=238
 " hi typescriptProp ctermfg=162
 " hi typescriptStatementKeyword ctermfg=31
+" Make strings green
 hi typescriptString ctermfg=28
 hi typescriptStringLiteralType ctermfg=28
 hi typescriptTemplate ctermfg=28
 hi jsxString ctermfg=28
+" Get rid of the terrible highlighting that makes it so you can't read errors
 hi CocErrorHighlight ctermbg=225
 hi diffRemoved ctermbg=225
