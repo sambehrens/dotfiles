@@ -162,4 +162,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 # set cursor to insert mode
 VI_MODE_SET_CURSOR=true
 
+enable-fzf-tab
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
