@@ -24,3 +24,11 @@ nnoremap <leader>F :action FindInPath<CR>
 
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
 
+nnoremap <leader>f :action SelectInProjectView<CR>
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+
+nnoremap <leader>gc :action Git.ResolveConflicts<CR>
+
+nnoremap ]g :action GotoNextError<CR>
+nnoremap [g :action GotoPreviousError<CR>
+
