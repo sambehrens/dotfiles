@@ -1,6 +1,9 @@
 source ~/.vimrc
 
 " To search available actions in Webstorm/IntelliJ, type :actionlist yourquery
+"
+" TODO: Make <leader>u open up the last visited file
+" Figure out how to close popup windows with <C-[>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
