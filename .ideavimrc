@@ -1,1 +1,17 @@
 source ~/.vimrc
+
+nnoremap gd :action GotoDeclaration
+nnoremap gr :action FindUsages
+
+nnoremap <leader>r :action RenameElement
+
+nnoremap <leader>pp :action ReformatWithPrettierAction
+vnoremap <leader>pp :action ReformatWithPrettierAction
+
+nnoremap <leader>c  :action CommentByLineComment
+vnoremap <leader>c  :action CommentByLineComment
+
+nnoremap <leader>do :action ShowIntentionActions
+
+" Search all files in project
+nnoremap <leader>F :action FindInPath
