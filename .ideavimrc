@@ -35,3 +35,5 @@ nnoremap <leader>gc :action Git.ResolveConflicts<CR>
 nnoremap ]g :action GotoNextError<CR>
 nnoremap [g :action GotoPreviousError<CR>
 
+nnoremap <C-Z> :action ActivateTerminalToolWindow<CR>
+
