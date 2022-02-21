@@ -20,7 +20,8 @@ nnoremap <leader>do :action ShowIntentionActions<CR>
 
 nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>i :action Switcher<CR>
-nnoremap <leader>u :action Switcher<CR><CR>
+" nnoremap <leader>u :action Switcher<CR><CR>
+nnoremap <leader>u :action Back<CR>
 
 " Search all files in project
 nnoremap <leader>F :action FindInPath<CR>
