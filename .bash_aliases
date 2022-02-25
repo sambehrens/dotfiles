@@ -65,8 +65,8 @@ alias gl='git log --oneline -n 15'
 alias glv='git log'
 alias glog='git log --oneline --graph'
 alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
-alias sta='git stash'
-alias sap='git stash apply'
+alias gsta='git stash'
+alias gsap='git stash apply'
 
 # log changes to a line
 function gll() {
