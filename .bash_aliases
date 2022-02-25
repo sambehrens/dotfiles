@@ -145,8 +145,9 @@ alias mcp='mvn clean package'
 alias j8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version'
 
 # directories
-alias esof='cd ~/Documents/adv_esof/esof422'
 alias gift='cd ~/Documents/giftgo'
+alias r='cd ~/Documents/repos'
+alias 1='cd ~/Documents/repos/wordz'
 
 # ANTLR
 alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"'

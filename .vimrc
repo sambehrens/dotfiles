@@ -61,6 +61,7 @@ set fileformat=unix
 
 " File type specific tab sizes
 autocmd FileType rust setlocal shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 
 " Move cursor to word when searching
 set incsearch
