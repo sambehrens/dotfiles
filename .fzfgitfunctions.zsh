@@ -20,7 +20,8 @@ _gg() {
   is_in_git_repo || return
   git -c color.status=always status -uno --short |
   fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; \
+    bat --style=numbers --color=always {-1})' |
   cut -c4- | sed 's/.* -> //'
 }
 
@@ -48,8 +49,8 @@ _gh() {
   glfancy $1 --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
-  grep -o "[a-f0-9]\{7,\}"
+    --expect 'ctrl-f' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always'
 }
 
 # git reflog with show preview
@@ -79,15 +80,17 @@ _gs() {
   cut -d: -f1
 }
 
-join-lines() {
-  local item
-  while read item; do
-    echo -n "${(q)item} "
-  done
+# git show changed files with diff preview
+_gf() {
+  is_in_git_repo || return
+  git show --pretty="" --name-only $1  |
+  fzf-down -m --ansi --nth 2..,.. \
+    --preview "(git show --color=always --pretty="" $1 {-1} | sed 1,4d)" |
+  sed 's/.* -> //'
 }
 
 # git checkout
-_go() {
+_gu() {
   is_in_git_repo || return
   git branch -a --color=always --sort=committerdate | grep -v '/HEAD\s' |
   fzf-down --ansi --no-sort --multi --tac --reverse --preview-window right:70% \
@@ -95,7 +98,14 @@ _go() {
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)'
 }
 
-fzf-go-widget() {
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+fzf-gu-widget() {
     local lines=$(_gu)
     key="$(head -1 <<< "$lines")"
     rest="$(sed 1d <<< "$lines" | sed 's/^..//' | cut -d' ' -f1 | sed 's#^remotes/##')"
@@ -108,7 +118,7 @@ fzf-go-widget() {
           zle accept-line
         ;;
       ctrl-h)
-        local result=$(_gh $rest)
+        local result=$(_gh $rest | grep -o "[a-f0-9]\{7,\}")
         zle reset-prompt
         LBUFFER+=$result
         ;;
@@ -122,6 +132,29 @@ fzf-go-widget() {
 zle -N fzf-gu-widget
 bindkey '^g^u' fzf-gu-widget
 
+fzf-gh-widget() {
+    local lines=$(_gh)
+    key="$(head -1 <<< "$lines")"
+    rest="$(sed 1d <<< "$lines" | grep -o "[a-f0-9]\{7,\}")"
+    zle reset-prompt
+    [[ -z "$rest" ]] && return
+
+    case "$key" in
+      ctrl-f)
+        local result=$(_gf $rest)
+        zle reset-prompt
+        LBUFFER+=$result
+        ;;
+      *)
+        local result=$(echo $rest | join-lines)
+        LBUFFER+=$result
+      ;;
+    esac
+}
+
+zle -N fzf-gh-widget
+bindkey '^g^h' fzf-gh-widget
+
 bind-git-helper() {
   local c
   for c in $@; do
@@ -131,5 +164,5 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper g b t r h j s o
+bind-git-helper g b t r j s f
 unset -f bind-git-helper

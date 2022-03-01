@@ -61,10 +61,14 @@ alias grsh='git reset --soft HEAD^'
 # reset to upstream branch
 alias grhu='git reset --hard @{upstream}'
 alias grmc='git rm -r --cached .; git add .'
+# git log
 alias gl='git log --oneline -n 15'
 alias glv='git log'
 alias glog='git log --oneline --graph'
 alias glop='git log --pretty=format:"(%h) - %an: %s" --graph'
+alias glfancy="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias glme='git log --author="Behrens"'
+# git stash
 alias gsta='git stash'
 alias gsap='git stash apply'
 
@@ -73,7 +77,6 @@ function gll() {
     git log -L $1,$1:$2
 }
 
-alias glme='git log --author="Behrens"'
 alias gdeletelastunpushedcommit='git reset HEAD~1 --hard'
 alias gamf='ga && git commit --amend --no-edit && gp --force'
 alias gcp='git cherry-pick'
