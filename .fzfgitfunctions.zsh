@@ -2,18 +2,23 @@
 # Copied from https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 # -------------
 
+alias vfzf='vi ~/.fzfgitfunctions.zsh'
+alias sfzf='. ~/.fzfgitfunctions.zsh'
+
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
 fzf-down() {
-  fzf --height 90% --min-height 20 --border --bind "ctrl-/:toggle-preview,ctrl-n:preview-down,ctrl-p:preview-up,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down" "$@"
+  fzf --height 90% --min-height 20 --preview-window border-left \
+      --preview-window wrap \
+      --bind "ctrl-a:toggle-all,ctrl-/:toggle-preview,ctrl-n:preview-down,ctrl-p:preview-up,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down" "$@"
 }
 
 # git status with diff preview
 _gg() {
   is_in_git_repo || return
-  git -c color.status=always status --short |
+  git -c color.status=always status -uno --short |
   fzf-down -m --ansi --nth 2..,.. \
     --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
   cut -c4- | sed 's/.* -> //'
@@ -23,7 +28,7 @@ _gg() {
 _gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
-  fzf-down --ansi --multi --tac --preview-window right:70% \
+  fzf-down --ansi --multi --tac --reverse --preview-window right:70% \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' |
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
@@ -40,7 +45,17 @@ _gt() {
 # git log with show preview
 _gh() {
   is_in_git_repo || return
-  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --color=always |
+  glfancy $1 --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+# git reflog with show preview
+_gj() {
+  is_in_git_repo || return
+  grl --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
@@ -59,7 +74,8 @@ _gr() {
 # git stash list with show preview
 _gs() {
   is_in_git_repo || return
-  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+  git stash list | fzf-down \
+      --reverse -d: --preview 'git show --color=always {1}' |
   cut -d: -f1
 }
 
@@ -70,6 +86,42 @@ join-lines() {
   done
 }
 
+# git checkout
+_go() {
+  is_in_git_repo || return
+  git branch -a --color=always --sort=committerdate | grep -v '/HEAD\s' |
+  fzf-down --ansi --no-sort --multi --tac --reverse --preview-window right:70% \
+    --expect 'ctrl-u,ctrl-h' \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)'
+}
+
+fzf-go-widget() {
+    local lines=$(_gu)
+    key="$(head -1 <<< "$lines")"
+    rest="$(sed 1d <<< "$lines" | sed 's/^..//' | cut -d' ' -f1 | sed 's#^remotes/##')"
+    zle reset-prompt
+    [[ -z "$rest" ]] && return
+
+    case "$key" in
+      ctrl-u)
+          BUFFER="git checkout $rest"
+          zle accept-line
+        ;;
+      ctrl-h)
+        local result=$(_gh $rest)
+        zle reset-prompt
+        LBUFFER+=$result
+        ;;
+      *)
+          local result=$(echo $rest | join-lines)
+          LBUFFER+=$result
+        ;;
+    esac
+}
+
+zle -N fzf-gu-widget
+bindkey '^g^u' fzf-gu-widget
+
 bind-git-helper() {
   local c
   for c in $@; do
@@ -78,5 +130,6 @@ bind-git-helper() {
     eval "bindkey '^g^$c' fzf-g$c-widget"
   done
 }
-bind-git-helper g b t r h s
+
+bind-git-helper g b t r h j s o
 unset -f bind-git-helper
