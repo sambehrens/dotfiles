@@ -1,6 +1,10 @@
 # GIT heart FZF
 # Copied from https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 # -------------
+# Note: All of the previews that show a diff should be unified using -u and then
+# piped to diff-so-fancy. https://github.com/so-fancy/diff-so-fancy#with-diff
+# For some reason it doesn't use the default pager for the fzf preview. Make
+# sure diff-so-fancy is installed `brew install diff-so-fancy`.
 
 alias vfzf='vi ~/.fzfgitfunctions.zsh'
 alias sfzf='. ~/.fzfgitfunctions.zsh'
@@ -20,7 +24,7 @@ _gg() {
   is_in_git_repo || return
   git -c color.status=always status -uno --short |
   fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; \
+    --preview '(git diff --color=always -u -- {-1} | diff-so-fancy | sed 1,4d; \
     bat --style=numbers --color=always {-1})' |
   cut -c4- | sed 's/.* -> //'
 }
@@ -50,7 +54,7 @@ _gh() {
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --expect 'ctrl-f' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always'
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always -u | diff-so-fancy'
 }
 
 # git reflog with show preview
@@ -59,7 +63,7 @@ _gj() {
   grl --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always -u | diff-so-fancy' |
   grep -o "[a-f0-9]\{7,\}"
 }
 
@@ -76,7 +80,7 @@ _gr() {
 _gs() {
   is_in_git_repo || return
   git stash list | fzf-down \
-      --reverse -d: --preview 'git show --color=always {1}' |
+      --reverse -d: --preview 'git show --color=always -u {1} | diff-so-fancy' |
   cut -d: -f1
 }
 
@@ -85,7 +89,7 @@ _gf() {
   is_in_git_repo || return
   git show --pretty="" --name-only $1  |
   fzf-down -m --ansi --nth 2..,.. \
-    --preview "(git show --color=always --pretty="" $1 {-1} | sed 1,4d)" |
+    --preview "(git show --color=always --pretty="" -u $1 {-1} | diff-so-fancy | sed 1,4d)" |
   sed 's/.* -> //'
 }
 
