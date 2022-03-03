@@ -14,7 +14,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 brew install fzf
 
-brew install pyenv
+brew install diff-so-fancy
 
 brew install bat
 
