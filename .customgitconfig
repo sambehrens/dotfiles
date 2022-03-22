@@ -1,24 +1,16 @@
 [core]
   editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
 [interactive]
-  diffFilter = diff-so-fancy --patch
+  diffFilter = delta --color-only
 [pull]
   rebase = false
 [user]
   name = Sam Behrens
-[color]
-  ui = true
-[color "diff-highlight"]
-  oldNormal = red
-  oldHighlight = red bold 52
-  newNormal = green
-  newHighlight = green bold 22
-[color "diff"]
-  old = red
-  new = green
-  frag = 127 bold
-  func = 56 bold
-  meta = 3
-[diff-so-fancy]
-  rulerWidth = 47 
+[delta]
+  navigate = true  # use n and N to move between diff section
+  syntax-theme = GitHub
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
