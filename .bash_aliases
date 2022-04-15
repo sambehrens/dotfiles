@@ -151,6 +151,7 @@ alias j8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version'
 alias gift='cd ~/Documents/giftgo'
 alias r='cd ~/Documents/repos'
 alias 1='cd ~/Documents/repos/wordz'
+alias 2='cd ~/Documents/repos/type-race'
 
 # ANTLR
 alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"'
