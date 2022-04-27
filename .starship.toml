@@ -4,3 +4,6 @@ style = "#00839e"
 repo_root_style = "underline bold #00839e"
 truncation_length = 6
 truncation_symbol = "../"
+
+[battery]
+disabled = true
