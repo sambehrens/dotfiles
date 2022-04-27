@@ -5,3 +5,10 @@ repo_root_style = "underline bold #00839e"
 truncation_length = 6
 truncation_symbol = "../"
 
+[git_metrics]
+disabled = false
+added_style = "green"
+deleted_style = "red"
+
+[git_status]
+stashed = ""
