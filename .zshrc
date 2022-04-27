@@ -134,6 +134,21 @@ bindkey -M menuselect '?' history-incremental-search-forward
 # bindkey -rpM viins '^['
 # bindkey -rpM vicmd '^['
 
+# activate job control
+set -m
+# alt-x: insert last command result
+zmodload -i zsh/parameter
+insert-last-command-output() {
+  LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey -M main '^W' insert-last-command-output
+bindkey -M vicmd '^W' insert-last-command-output
+
+# rebind fzf cd widget
+bindkey -M main '^E' fzf-cd-widget
+bindkey -M vicmd '^E' fzf-cd-widget
+
 # Easier bindings than going to cmd mode then pressing j or k
 bindkey -M main '^K' up-history
 bindkey -M main '^J' down-history
