@@ -6,7 +6,9 @@ truncation_length = 6
 truncation_symbol = "../"
 
 [git_branch]
-style = "green"
+style = "bg:193 green"
+symbol = ""
+format = "on [ $symbol $branch(:$remote_branch) ]($style) "
 
 [git_metrics]
 disabled = false
