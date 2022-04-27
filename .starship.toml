@@ -12,3 +12,4 @@ deleted_style = "red"
 
 [git_status]
 stashed = ""
+style = "bold yellow"
