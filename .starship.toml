@@ -6,9 +6,9 @@ truncation_length = 6
 truncation_symbol = "../"
 
 [character]
-success_symbol = "[ᐅ](bold green)"
-error_symbol = "[ᐅ](bold red)"
-vicmd_symbol = "[ᐊ](bold blue)"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold blue)"
 
 [git_branch]
 style = "bg:193 green"
@@ -29,6 +29,5 @@ symbol = ""
 style = "208"
 
 [nodejs]
-symbol = "nodejs "
 version_format = "v${major}"
 style = "green"
