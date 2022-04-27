@@ -5,6 +5,11 @@ repo_root_style = "bold 39"
 truncation_length = 6
 truncation_symbol = "../"
 
+[character]
+success_symbol = "[ᐅ](bold green)"
+error_symbol = "[ᐅ](bold red)"
+vicmd_symbol = "[ᐊ](bold blue)"
+
 [git_branch]
 style = "bg:193 green"
 symbol = ""
@@ -18,6 +23,10 @@ deleted_style = "red"
 [git_status]
 stashed = ""
 style = "bold yellow"
+
+[package]
+symbol = ""
+style = "208"
 
 [nodejs]
 symbol = "nodejs "
