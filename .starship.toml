@@ -16,3 +16,8 @@ deleted_style = "red"
 [git_status]
 stashed = ""
 style = "bold yellow"
+
+[nodejs]
+symbol = "nodejs "
+version_format = "v${major}"
+style = "green"
