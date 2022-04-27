@@ -153,8 +153,8 @@ bindkey -M vicmd '^E' fzf-cd-widget
 bindkey -s '^ ' ' git status^M'
 
 # execute current autosuggestion
-bindkey -M main '^M' autosuggest-execute
-bindkey -M vicmd '^M' autosuggest-execute
+bindkey -M main '^N' autosuggest-execute
+bindkey -M vicmd '^N' autosuggest-execute
 
 # Easier bindings than going to cmd mode then pressing j or k
 bindkey -M main '^K' up-history
