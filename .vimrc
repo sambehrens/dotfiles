@@ -214,29 +214,29 @@ nnoremap <leader>F :Rg<CR>
 nnoremap <leader>x :close<CR>
 
 " Toggle Netrw file explorer
-let g:NetrwIsOpen=0
-function! ToggleNetrw(type)
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        if (a:type == "0")
-            silent Lexplore
-        endif
-        if (a:type == "1")
-            silent Vexplore
-        endif
-    endif
-endfunction
-noremap <leader>e :call ToggleNetrw("0")<CR>
-noremap <leader>f :call ToggleNetrw("1")<CR>
+" let g:NetrwIsOpen=0
+" function! ToggleNetrw(type)
+"     if g:NetrwIsOpen
+"         let i = bufnr("$")
+"         while (i >= 1)
+"             if (getbufvar(i, "&filetype") == "netrw")
+"                 silent exe "bwipeout " . i 
+"             endif
+"             let i-=1
+"         endwhile
+"         let g:NetrwIsOpen=0
+"     else
+"         let g:NetrwIsOpen=1
+"         if (a:type == "0")
+"             silent Lexplore
+"         endif
+"         if (a:type == "1")
+"             silent Vexplore
+"         endif
+"     endif
+" endfunction
+" noremap <leader>e :call ToggleNetrw("0")<CR>
+" noremap <leader>f :call ToggleNetrw("1")<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
@@ -283,6 +283,12 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " better syntax highlighting and indentation
 Plug 'sheerun/vim-polyglot'
+
+" better file explorer
+Plug 'tpope/vim-vinegar'
+
+" Git inside vim
+Plug 'tpope/vim-fugitive'
 
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
