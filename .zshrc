@@ -113,9 +113,6 @@ source ~/.bash_aliases
 
 source ~/.fzfgitfunctions.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.p10k.zsh
-
 # Less won't be used if it fits in the page
 export LESS="-F -X $LESS"
 
@@ -136,7 +133,7 @@ bindkey -M menuselect '?' history-incremental-search-forward
 
 # activate job control
 set -m
-# alt-x: insert last command result
+# insert last command result
 zmodload -i zsh/parameter
 insert-last-command-output() {
   LBUFFER+="$(eval $history[$((HISTCMD-1))])"
