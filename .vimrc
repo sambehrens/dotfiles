@@ -119,11 +119,8 @@ set shortmess+=c
 " Set leader key to Space
 let mapleader =  " "
 
-func DisableCocPairs()
-    let b:coc_pairs_disabled = ['(']
-endfunc
 " Templates
-imap <expr> <DisableCocPairs> <buffer> clog console.log()<C-O>i
+imap <buffer> ;log console.log(
 
 " Coc stuff
 " Coc Symbol renaming.
