@@ -119,6 +119,9 @@ set shortmess+=c
 " Set leader key to Space
 let mapleader =  " "
 
+" Templates
+imap <buffer> clog console.log()<C-O>i
+
 " Coc stuff
 " Coc Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
