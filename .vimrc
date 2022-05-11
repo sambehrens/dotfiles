@@ -120,7 +120,10 @@ set shortmess+=c
 let mapleader =  " "
 
 " Templates
-imap <buffer> ;log console.log(
+autocmd FileType javascript imap <buffer> ;log console.log(
+autocmd FileType typescript imap <buffer> ;log console.log(
+autocmd FileType typescriptreact imap <buffer> ;log console.log(
+autocmd FileType javascriptreact imap <buffer> ;log console.log(
 
 " Coc stuff
 " Coc Symbol renaming.
