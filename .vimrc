@@ -383,3 +383,7 @@ hi cssStringQ ctermfg=28
 " Get rid of the terrible highlighting that makes it so you can't read errors
 hi CocErrorHighlight ctermbg=225
 hi diffRemoved ctermbg=225
+hi jsonString ctermfg=28
+hi jsonKeyword ctermfg=91
+hi yamlFlowString ctermfg=28
+hi jsonKeywordMatch ctermfg=92
