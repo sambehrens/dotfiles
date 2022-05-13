@@ -387,3 +387,4 @@ hi jsonString ctermfg=28
 hi jsonKeyword ctermfg=91
 hi yamlFlowString ctermfg=28
 hi jsonKeywordMatch ctermfg=92
+hi jsonQuote ctermfg=0
