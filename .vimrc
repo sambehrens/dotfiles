@@ -379,6 +379,7 @@ hi typescriptString ctermfg=28
 hi typescriptStringLiteralType ctermfg=28
 hi typescriptTemplate ctermfg=28
 hi jsxString ctermfg=28
+hi jsString ctermfg=28
 hi cssStringQ ctermfg=28
 " Get rid of the terrible highlighting that makes it so you can't read errors
 hi CocErrorHighlight ctermbg=225
