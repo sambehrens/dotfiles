@@ -119,6 +119,12 @@ set shortmess+=c
 " Set leader key to Space
 let mapleader =  " "
 
+" Templates
+autocmd FileType javascript imap <buffer> ;log console.log(
+autocmd FileType typescript imap <buffer> ;log console.log(
+autocmd FileType typescriptreact imap <buffer> ;log console.log(
+autocmd FileType javascriptreact imap <buffer> ;log console.log(
+
 " Coc stuff
 " Coc Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -214,29 +220,29 @@ nnoremap <leader>F :Rg<CR>
 nnoremap <leader>x :close<CR>
 
 " Toggle Netrw file explorer
-let g:NetrwIsOpen=0
-function! ToggleNetrw(type)
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        if (a:type == "0")
-            silent Lexplore
-        endif
-        if (a:type == "1")
-            silent Vexplore
-        endif
-    endif
-endfunction
-noremap <leader>e :call ToggleNetrw("0")<CR>
-noremap <leader>f :call ToggleNetrw("1")<CR>
+" let g:NetrwIsOpen=0
+" function! ToggleNetrw(type)
+"     if g:NetrwIsOpen
+"         let i = bufnr("$")
+"         while (i >= 1)
+"             if (getbufvar(i, "&filetype") == "netrw")
+"                 silent exe "bwipeout " . i 
+"             endif
+"             let i-=1
+"         endwhile
+"         let g:NetrwIsOpen=0
+"     else
+"         let g:NetrwIsOpen=1
+"         if (a:type == "0")
+"             silent Lexplore
+"         endif
+"         if (a:type == "1")
+"             silent Vexplore
+"         endif
+"     endif
+" endfunction
+" noremap <leader>e :call ToggleNetrw("0")<CR>
+" noremap <leader>f :call ToggleNetrw("1")<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
@@ -284,6 +290,12 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " better syntax highlighting and indentation
 Plug 'sheerun/vim-polyglot'
+
+" better file explorer
+Plug 'tpope/vim-vinegar'
+
+" Git inside vim
+Plug 'tpope/vim-fugitive'
 
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
@@ -368,7 +380,13 @@ hi typescriptString ctermfg=28
 hi typescriptStringLiteralType ctermfg=28
 hi typescriptTemplate ctermfg=28
 hi jsxString ctermfg=28
+hi jsString ctermfg=28
 hi cssStringQ ctermfg=28
 " Get rid of the terrible highlighting that makes it so you can't read errors
 hi CocErrorHighlight ctermbg=225
 hi diffRemoved ctermbg=225
+hi jsonString ctermfg=28
+hi jsonKeyword ctermfg=91
+hi yamlFlowString ctermfg=28
+hi jsonKeywordMatch ctermfg=92
+hi jsonQuote ctermfg=0
