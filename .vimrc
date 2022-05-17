@@ -246,6 +246,7 @@ nnoremap <leader>x :close<CR>
 
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
+nnoremap <leader>cb :Cbuild<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
 " Show highlight groups at cursor

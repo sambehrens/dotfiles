@@ -175,6 +175,9 @@ VI_MODE_SET_CURSOR=true
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export STARSHIP_CONFIG=~/.starship.toml
-eval "$(starship init zsh)"
+eval "$(~/Documents/repos/starship/target/debug/starship init zsh)"
 
 enable-fzf-tab
+
+# Created by `userpath` on 2022-05-14 00:42:28
+export PATH="$PATH:/Users/sambehrens/.local/bin"
