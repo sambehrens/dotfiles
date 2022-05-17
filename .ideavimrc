@@ -13,8 +13,8 @@ nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <leader>pp :action ReformatWithPrettierAction<CR>
 vnoremap <leader>pp :action ReformatWithPrettierAction<CR>
 
-nnoremap <leader>c  :action CommentByLineComment<CR>
-vnoremap <leader>c  :action CommentByLineComment<CR>
+nnoremap <leader>cc :action CommentByLineComment<CR>
+vnoremap <leader>cc :action CommentByLineComment<CR>
 
 nnoremap <leader>do :action ShowIntentionActions<CR>
 
