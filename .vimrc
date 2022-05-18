@@ -187,7 +187,7 @@ nmap gc <Plug>(coc-git-commit)
 " undo chunk
 nmap gu :CocCommand git.chunkUndo<CR>
 " open current line in browser
-nmap gb :CocCommand git.browserOpen<CR>
+nmap gr :CocCommand git.browserOpen<CR>
 " End Coc Stuff
 
 " Window navigation
@@ -260,6 +260,9 @@ endfunc
 
 " source vimrc so easy
 nnoremap <leader>sv :source ~/.vimrc<CR>
+
+" vim fugitive (git)
+nnoremap <leader>gb :Git blame<CR>
 
 " vim-plug plugin manager
 " see mappings below 

@@ -19,12 +19,15 @@ vnoremap <leader>cc :action CommentByLineComment<CR>
 nnoremap <leader>do :action ShowIntentionActions<CR>
 
 nnoremap <leader>o :action GotoFile<CR>
+vnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>i :action Switcher<CR>
+vnoremap <leader>i :action Switcher<CR>
 " nnoremap <leader>u :action Switcher<CR><CR>
 nnoremap <leader>u :action Back<CR>
 
 " Search all files in project
 nnoremap <leader>F :action FindInPath<CR>
+vnoremap <leader>F :action FindInPath<CR>
 
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
 
