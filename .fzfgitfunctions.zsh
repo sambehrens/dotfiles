@@ -109,37 +109,10 @@ join-lines() {
   done
 }
 
-fzf-gu-widget() {
-    local lines=$(_gu)
-    key="$(head -1 <<< "$lines")"
-    rest="$(sed 1d <<< "$lines" | sed 's/^..//' | cut -d' ' -f1 | sed 's#^remotes/##')"
-    zle reset-prompt
-    [[ -z "$rest" ]] && return
-
-    case "$key" in
-      ctrl-u)
-          BUFFER="git checkout $rest"
-          zle accept-line
-        ;;
-      ctrl-h)
-        local result=$(_gh $rest | grep -o "[a-f0-9]\{7,\}")
-        zle reset-prompt
-        LBUFFER+=$result
-        ;;
-      *)
-          local result=$(echo $rest | join-lines)
-          LBUFFER+=$result
-        ;;
-    esac
-}
-
-zle -N fzf-gu-widget
-bindkey '^g^u' fzf-gu-widget
-
 fzf-gh-widget() {
-    local lines=$(_gh)
+    local lines=$(_gh $1)
     key="$(head -1 <<< "$lines")"
-    rest="$(sed 1d <<< "$lines" | grep -o "[a-f0-9]\{7,\}")"
+    rest="$(sed 1d <<< "$lines" | grep -o "[a-f0-9]\{7,\}" | head -1)"
     zle reset-prompt
     [[ -z "$rest" ]] && return
 
@@ -158,6 +131,34 @@ fzf-gh-widget() {
 
 zle -N fzf-gh-widget
 bindkey '^g^h' fzf-gh-widget
+
+fzf-gu-widget() {
+    local lines=$(_gu)
+    key="$(head -1 <<< "$lines")"
+    rest="$(sed 1d <<< "$lines" | sed 's/^..//' | cut -d' ' -f1 | sed 's#^remotes/##')"
+    zle reset-prompt
+    [[ -z "$rest" ]] && return
+
+    case "$key" in
+      ctrl-u)
+          BUFFER="git checkout $rest"
+          zle accept-line
+        ;;
+      ctrl-h)
+        fzf-gh-widget $rest
+        # local result=$(_gh $rest | grep -o "[a-f0-9]\{7,\}")
+        # zle reset-prompt
+        # LBUFFER+=$result
+        ;;
+      *)
+          local result=$(echo $rest | join-lines)
+          LBUFFER+=$result
+        ;;
+    esac
+}
+
+zle -N fzf-gu-widget
+bindkey '^g^u' fzf-gu-widget
 
 bind-git-helper() {
   local c
