@@ -209,6 +209,7 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " fzf
+nnoremap <leader>O :Files<CR>
 nnoremap <leader>o :GFiles<CR>
 nnoremap <leader>i :Buffers<CR>
 nnoremap <leader>u <C-^>
