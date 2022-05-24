@@ -90,7 +90,7 @@ _gf() {
   git show --pretty="" --name-only $1  |
   fzf-down -m --ansi --nth 2..,.. \
     --preview "(git show --color=always --pretty="" -u $1 {-1} | delta | sed 1,4d)" |
-  sed 's/.* -> //'
+  sed 's/.* -> //' | tr '\n' ' '
 }
 
 # git checkout
