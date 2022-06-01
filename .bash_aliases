@@ -2,6 +2,7 @@
 alias ga='git add'
 alias gaa='ga .'
 alias gap='git add --patch'
+alias gai='git add --interactive'
 
 alias gs='git status'
 alias gss='git status --short'
