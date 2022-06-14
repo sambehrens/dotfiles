@@ -346,6 +346,8 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+nnoremap <leader>cc :call nerdcommenter#Comment('x', 'toggle')<CR>
+vnoremap <leader>cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
 " Netrw file explorer settings
 " Use a tree view
