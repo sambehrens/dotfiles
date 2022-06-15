@@ -191,8 +191,10 @@ nmap gff :CocCommand git.browserOpen<CR>
 " End Coc Stuff
 
 " Vim fugitive
-nnoremap <leader>fd :Gdiffsplit!<CR>
+nnoremap <leader>fc :Gdiffsplit!<CR>
+nnoremap <leader>fd :Gdiffsplit<CR>
 nnoremap <leader>fw :Gwrite<CR>
+nnoremap <leader>fx :only<CR>
 
 " Window navigation
 nnoremap <leader>h :wincmd h<CR>
