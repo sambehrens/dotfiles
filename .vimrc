@@ -195,8 +195,8 @@ nnoremap <leader>fc :Gdiffsplit!<CR>
 nnoremap <leader>fd :Gdiffsplit<CR>
 nnoremap <leader>fw :Gwrite<CR>
 nnoremap <leader>fx :only<CR>
-nnoremap <leader>dgl :diffget //2 | :diffupdate<CR>
-nnoremap <leader>dgr :diffget //3 | :diffupdate<CR>
+nnoremap <leader>dgl :diffget //2 | diffupdate<CR>
+nnoremap <leader>dgr :diffget //3 | diffupdate<CR>
 
 " Window navigation
 nnoremap <leader>h :wincmd h<CR>
