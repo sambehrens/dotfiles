@@ -187,8 +187,12 @@ nmap gc <Plug>(coc-git-commit)
 " undo chunk
 nmap gu :CocCommand git.chunkUndo<CR>
 " open current line in browser
-nmap gr :CocCommand git.browserOpen<CR>
+nmap gff :CocCommand git.browserOpen<CR>
 " End Coc Stuff
+
+" Vim fugitive
+nnoremap <leader>fd :Gdiffsplit!<CR>
+nnoremap <leader>fw :Gwrite<CR>
 
 " Window navigation
 nnoremap <leader>h :wincmd h<CR>
