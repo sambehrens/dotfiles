@@ -10,5 +10,7 @@
 [delta]
   navigate = true  # use n and N to move between diff section
   syntax-theme = GitHub
+[merge]
+  conflictStyle = diff3
 [diff]
   colorMoved = default
