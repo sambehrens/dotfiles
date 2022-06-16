@@ -191,7 +191,7 @@ nmap gff :CocCommand git.browserOpen<CR>
 " End Coc Stuff
 
 " Vim fugitive
-nnoremap <leader>fc :Gdiffsplit!<CR>
+nnoremap <leader>fr :Gvdiffsplit!<CR>
 nnoremap <leader>fd :Gdiffsplit<CR>
 nnoremap <leader>fw :Gwrite<CR>
 nnoremap <leader>fx :only<CR>
@@ -309,6 +309,9 @@ Plug 'tpope/vim-vinegar'
 " Git inside vim
 Plug 'tpope/vim-fugitive'
 
+" Browse gitlab from vim fugitive
+Plug 'shumphrey/fugitive-gitlab.vim'
+
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
 
@@ -366,6 +369,9 @@ let g:netrw_banner = 0
 let g:netrw_winsize = 25
 " Open files in vertical window
 let g:netrw_browse_split = 4
+
+" fugitive-gitlab domains
+let g:fugitive_gitlab_domains = ['https://git.dataminr.com']
 
 " Colors!
 set background=light
