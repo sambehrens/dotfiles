@@ -89,7 +89,7 @@ _gf() {
   is_in_git_repo || return
   git show --pretty="" --name-only $1  |
   fzf-down -m --ansi --nth 2..,.. \
-    --expect 'ctrl-h' \
+    --expect 'ctrl-h,ctrl-n' \
     --preview "(git show --color=always --pretty="" -u $1 {-1} | delta | sed 1,4d)"
 }
 
@@ -100,6 +100,15 @@ _gu() {
   fzf-down --ansi --no-sort --multi --tac --reverse --preview-window right:70% \
     --expect 'ctrl-u,ctrl-h' \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)'
+}
+
+# git log for certain file with just that file's changes
+_gn() {
+  is_in_git_repo || return
+  glfancy --color=always --follow -- $@ |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview "grep -o '[a-f0-9]\{7,\}' <<< {} | head -1 | xargs -I {} git show --color=always -u {} $@ | delta"
 }
 
 join-lines() {
@@ -119,6 +128,11 @@ fzf-gf-widget() {
     case "$key" in
       ctrl-h)
         fzf-gh-widget --follow -- $rest
+        ;;
+      ctrl-n)
+        local result=$(_gn $rest | grep -o "[a-f0-9]\{7,\}")
+        zle reset-prompt
+        LBUFFER+=$result
         ;;
       *)
         local result=$(echo $rest | join-lines)
