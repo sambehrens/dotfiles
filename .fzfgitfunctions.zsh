@@ -50,7 +50,7 @@ _gt() {
 # git log with show preview
 _gh() {
   is_in_git_repo || return
-  glfancy $1 --color=always |
+  glfancy --color=always $@ |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --expect 'ctrl-f' \
@@ -89,8 +89,8 @@ _gf() {
   is_in_git_repo || return
   git show --pretty="" --name-only $1  |
   fzf-down -m --ansi --nth 2..,.. \
-    --preview "(git show --color=always --pretty="" -u $1 {-1} | delta | sed 1,4d)" |
-  sed 's/.* -> //' | tr '\n' ' '
+    --expect 'ctrl-h' \
+    --preview "(git show --color=always --pretty="" -u $1 {-1} | delta | sed 1,4d)"
 }
 
 # git checkout
@@ -109,8 +109,29 @@ join-lines() {
   done
 }
 
+fzf-gf-widget() {
+    local lines=$(_gf $1)
+    key="$(head -1 <<< "$lines")"
+    rest="$(sed 1d <<< "$lines" | sed 's/.* -> //' | tr '\n' ' ' | xargs)"
+    zle reset-prompt
+    [[ -z "$rest" ]] && return
+
+    case "$key" in
+      ctrl-h)
+        fzf-gh-widget --follow -- $rest
+        ;;
+      *)
+        local result=$(echo $rest | join-lines)
+        LBUFFER+=$result
+      ;;
+    esac
+}
+
+zle -N fzf-gf-widget
+bindkey '^g^f' fzf-gf-widget
+
 fzf-gh-widget() {
-    local lines=$(_gh $1)
+    local lines=$(_gh "$@")
     key="$(head -1 <<< "$lines")"
     rest="$(sed 1d <<< "$lines" | grep -o "[a-f0-9]\{7,\}" | head -1)"
     zle reset-prompt
@@ -118,9 +139,7 @@ fzf-gh-widget() {
 
     case "$key" in
       ctrl-f)
-        local result=$(_gf $rest)
-        zle reset-prompt
-        LBUFFER+=$result
+        fzf-gf-widget $rest
         ;;
       *)
         local result=$(echo $rest | join-lines)
@@ -169,5 +188,5 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper g b t r j s f
+bind-git-helper g b t r j s
 unset -f bind-git-helper

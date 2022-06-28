@@ -181,3 +181,8 @@ enable-fzf-tab
 
 # Created by `userpath` on 2022-05-14 00:42:28
 export PATH="$PATH:/Users/sambehrens/.local/bin"
+
+# pnpm
+export PNPM_HOME="/Users/sbehrens/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
