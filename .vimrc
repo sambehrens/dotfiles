@@ -410,3 +410,4 @@ hi jsonKeyword ctermfg=91
 hi yamlFlowString ctermfg=28
 hi jsonKeywordMatch ctermfg=92
 hi jsonQuote ctermfg=0
+hi pythonString ctermfg=28

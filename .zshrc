@@ -186,3 +186,4 @@ export PATH="$PATH:/Users/sambehrens/.local/bin"
 export PNPM_HOME="/Users/sbehrens/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export PATH="$HOME/.poetry/bin:$PATH"
