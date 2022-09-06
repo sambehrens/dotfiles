@@ -28,6 +28,7 @@ function gof {
 }
 
 alias gom='git checkout master'
+alias goma='git checkout main'
 alias gob='git checkout -b'
 alias go-='git checkout -'
 alias gb='git branch'
