@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:`pwd`/flutter/bin"
+export PATH="/Users/sbehrens/.local/bin:$PATH"
+
+export JAVA_HOME=/usr
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -186,4 +189,11 @@ export PATH="$PATH:/Users/sambehrens/.local/bin"
 export PNPM_HOME="/Users/sbehrens/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
-export PATH="$HOME/.poetry/bin:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+[ -f ~/.zsh_computer_specific.zsh ] && source ~/.zsh_computer_specific.zsh
+
