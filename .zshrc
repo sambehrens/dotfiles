@@ -197,3 +197,11 @@ eval "$(pyenv init -)"
 
 [ -f ~/.zsh_computer_specific.zsh ] && source ~/.zsh_computer_specific.zsh
 
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+jdk() {
+  version=$1
+  unset JAVA_HOME;
+  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  java -version
+}
