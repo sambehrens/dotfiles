@@ -3,7 +3,7 @@
 export PATH="$PATH:`pwd`/flutter/bin"
 export PATH="/Users/sbehrens/.local/bin:$PATH"
 
-export JAVA_HOME=/usr
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

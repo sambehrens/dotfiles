@@ -27,8 +27,8 @@ function gof {
     git branch -a | grep -v remotes | grep $1 | head -n 1 | xargs git checkout
 }
 
-alias gom='git checkout master'
-alias goma='git checkout main'
+alias gom='git checkout "$(git rev-parse --abbrev-ref origin/HEAD | cut -c8-)"'
+# alias goma='git checkout main'
 alias gob='git checkout -b'
 alias go-='git checkout -'
 alias gb='git branch'
