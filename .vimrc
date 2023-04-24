@@ -5,14 +5,56 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" vim-plug plugin manager
+" see mappings below 
+call plug#begin('~/.vim/plugged')
+
+" color scheme
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'cormacrelf/vim-colors-github'
+
+" rust official vim plugin
+Plug 'rust-lang/rust.vim'
+
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" nerd commenter so I can easily comment lines out
+Plug 'preservim/nerdcommenter'
+
+" airline for the bar at the bottom of vim window
+Plug 'vim-airline/vim-airline'
+
+" Fuzzy searching
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Make styled-components look good
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+" better syntax highlighting and indentation
+Plug 'sheerun/vim-polyglot'
+
+" better file explorer
+Plug 'tpope/vim-vinegar'
+
+" Git inside vim
+Plug 'tpope/vim-fugitive'
+
+" Browse gitlab from vim fugitive
+Plug 'shumphrey/fugitive-gitlab.vim'
+
+" typescript styntax stuff
+" Plug 'leafgarland/typescript-vim'
+
+call plug#end()
+
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
-" map jk to escape
-" imap jk <Esc>
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
@@ -78,32 +120,10 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-function SmoothScroll(up)
-    if a:up
-        let scrollaction=""
-    else
-        let scrollaction=""
-    endif
-    exec "normal " . scrollaction
-    redraw
-    let counter=1
-    while counter<&scroll
-        let counter+=1
-        sleep 10m
-        redraw
-        exec "normal " . scrollaction
-    endwhile
-endfunction
-
-" nnoremap <C-U> :call SmoothScroll(1)<Enter>
-" nnoremap <C-D> :call SmoothScroll(0)<Enter>
-" inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
-" inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
-
 " Copy to system clipboard with yank
 set clipboard=unnamed
 
-" Color the 80 column light grey
+" Color the 80, 100 column light grey
 set colorcolumn=80,100
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -136,22 +156,12 @@ xmap <leader>do <Plug>(coc-codeaction-selected)j
 nmap <leader>do <Plug>(coc-codeaction-selected)j
 
 " Coc window navigation
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -228,31 +238,6 @@ nnoremap <leader>F :Rg<CR>
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
 
-" Toggle Netrw file explorer
-" let g:NetrwIsOpen=0
-" function! ToggleNetrw(type)
-"     if g:NetrwIsOpen
-"         let i = bufnr("$")
-"         while (i >= 1)
-"             if (getbufvar(i, "&filetype") == "netrw")
-"                 silent exe "bwipeout " . i 
-"             endif
-"             let i-=1
-"         endwhile
-"         let g:NetrwIsOpen=0
-"     else
-"         let g:NetrwIsOpen=1
-"         if (a:type == "0")
-"             silent Lexplore
-"         endif
-"         if (a:type == "1")
-"             silent Vexplore
-"         endif
-"     endif
-" endfunction
-" noremap <leader>e :call ToggleNetrw("0")<CR>
-" noremap <leader>f :call ToggleNetrw("1")<CR>
-
 " rust stuff
 nnoremap <leader>cr :Crun<CR>
 nnoremap <leader>cb :Cbuild<CR>
@@ -273,50 +258,6 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 
 " vim fugitive (git)
 nnoremap <leader>gb :Git blame<CR>
-
-" vim-plug plugin manager
-" see mappings below 
-call plug#begin('~/.vim/plugged')
-
-" color scheme
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'cormacrelf/vim-colors-github'
-
-" rust official vim plugin
-Plug 'rust-lang/rust.vim'
-
-" coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" nerd commenter so I can easily comment lines out
-Plug 'preservim/nerdcommenter'
-
-" airline for the bar at the bottom of vim window
-Plug 'vim-airline/vim-airline'
-
-" Fuzzy searching
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Make styled-components look good
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" better syntax highlighting and indentation
-Plug 'sheerun/vim-polyglot'
-
-" better file explorer
-Plug 'tpope/vim-vinegar'
-
-" Git inside vim
-Plug 'tpope/vim-fugitive'
-
-" Browse gitlab from vim fugitive
-Plug 'shumphrey/fugitive-gitlab.vim'
-
-" typescript styntax stuff
-" Plug 'leafgarland/typescript-vim'
-
-call plug#end()
 
 " coc.nvim
 let g:coc_global_extensions = [
@@ -379,23 +320,6 @@ set background=light
 colorscheme github
 let g:airline_theme = "dark"
 set termguicolors
-" typescript extra colors because PaperColor kinda sucks for typescript
-" hi typescriptCastKeyword ctermfg=166
-" hi typescriptAliasDeclaration ctermfg=238
-" hi typescriptUnion ctermfg=238
-" hi typescriptObjectType ctermfg=91
-" hi typescriptMember ctermfg=91
-" hi typescriptObjectLabel ctermfg=91
-" hi typescriptImport ctermfg=31
-" hi typescriptConsoleMethod ctermfg=166
-" hi typescriptGlobal ctermfg=162
-" hi typescriptParens ctermfg=238
-" hi typescriptExport ctermfg=31
-" hi typescriptFuncKeyword ctermfg=31
-" hi typescriptAliasKeyword ctermfg=31
-" hi typescriptCall ctermfg=238
-" hi typescriptProp ctermfg=162
-" hi typescriptStatementKeyword ctermfg=31
 " Make strings green
 hi typescriptString ctermfg=28
 hi typescriptStringLiteralType ctermfg=28
@@ -403,8 +327,8 @@ hi typescriptTemplate ctermfg=28
 hi jsxString ctermfg=28
 hi jsString ctermfg=28
 hi cssStringQ ctermfg=28
-" Get rid of the terrible highlighting that makes it so you can't read errors
-hi CocErrorHighlight ctermbg=225
+" Fix the terrible floating window that makes it so you can't read errors
+hi CocErrorFloat guifg=#585858
 hi diffRemoved ctermbg=225
 hi jsonString ctermfg=28
 hi jsonKeyword ctermfg=91
@@ -412,3 +336,4 @@ hi yamlFlowString ctermfg=28
 hi jsonKeywordMatch ctermfg=92
 hi jsonQuote ctermfg=0
 hi pythonString ctermfg=28
+
