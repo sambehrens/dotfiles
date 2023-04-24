@@ -12,7 +12,6 @@ vicmd_symbol = "[❮](bold blue)"
 
 [git_branch]
 style = "bg:193 green"
-symbol = ""
 format = "[ $symbol $branch(:$remote_branch) ]($style) "
 
 [git_metrics]
