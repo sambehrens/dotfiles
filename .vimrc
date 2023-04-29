@@ -154,10 +154,14 @@ nmap <leader>rn <Plug>(coc-rename)
 " Note the 'j' is to make the hint window go away
 xmap <leader>do <Plug>(coc-codeaction-selected)j
 nmap <leader>do <Plug>(coc-codeaction-selected)j
+vmap <leader>do <Plug>(coc-codeaction-selected)j
 
 " Coc window navigation
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
+nnoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
+nnoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
