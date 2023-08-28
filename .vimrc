@@ -152,9 +152,9 @@ nmap <leader>rn <Plug>(coc-rename)
 " Coc do code action
 " Applying codeAction to the selected region.
 " Note the 'j' is to make the hint window go away
-xmap <leader>do <Plug>(coc-codeaction-selected)j
-nmap <leader>do <Plug>(coc-codeaction-selected)j
-vmap <leader>do <Plug>(coc-codeaction-selected)j
+xmap <leader>do <Plug>(coc-codeaction-cursor)
+nmap <leader>do <Plug>(coc-codeaction-cursor)
+vmap <leader>do <Plug>(coc-codeaction-cursor)
 
 " Coc window navigation
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
@@ -279,7 +279,6 @@ let g:coc_global_extensions = [
 call coc#config('jest', {
     \ 'customFlags': ['--coverage=false'],
     \})
-
 
 " Prettier setup
 " Allows you to call :Prettier
