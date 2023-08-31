@@ -17,3 +17,4 @@
 !.install_dot_files.sh
 !.fzfgitfunctions.zsh
 !.starship.toml
+!.vim/coc-settings.json
