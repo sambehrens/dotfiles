@@ -164,7 +164,12 @@ nnoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>x\<BS>"
+" this makes it so indents don't go away when I leave a line
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
+
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -262,11 +267,6 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 
 " vim fugitive (git)
 nnoremap <leader>gb :Git blame<CR>
-
-" this makes it so indents don't go away when I leave a line
-inoremap <CR> <CR>x<BS>
-nnoremap o ox<BS>
-nnoremap O Ox<BS>
 
 " coc.nvim
 let g:coc_global_extensions = [
