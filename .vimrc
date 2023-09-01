@@ -263,6 +263,11 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 " vim fugitive (git)
 nnoremap <leader>gb :Git blame<CR>
 
+" this makes it so indents don't go away when I leave a line
+inoremap <CR> <CR>x<BS>
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
+
 " coc.nvim
 let g:coc_global_extensions = [
     \'coc-highlight',
