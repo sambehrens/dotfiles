@@ -18,3 +18,4 @@
 !.fzfgitfunctions.zsh
 !.starship.toml
 !.vim/coc-settings.json
+!.config/zed/settings.json
