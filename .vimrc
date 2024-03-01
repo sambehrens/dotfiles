@@ -283,6 +283,7 @@ let g:coc_global_extensions = [
     \'coc-eslint',
     \'coc-prettier',
     \'coc-jest',
+    \'coc-elixir',
     \]
 call coc#config('jest', {
     \ 'customFlags': ['--coverage=false'],
