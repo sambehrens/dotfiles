@@ -195,3 +195,7 @@ function day () {
     cp -v ~/Documents/rust/advent_template.rs ~/Documents/rust/advent_day_$1_q1/src/main.rs
     cd ~/Documents/rust/advent_day_$1_q1
 }
+
+# run postgres locally
+alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
+alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
