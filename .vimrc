@@ -44,6 +44,9 @@ Plug 'tpope/vim-fugitive'
 " Browse gitlab from vim fugitive
 Plug 'shumphrey/fugitive-gitlab.vim'
 
+" Syntax highlighting for sailfish templates, used by fast-giftgo
+Plug 'rust-sailfish/sailfish', { 'rtp': 'syntax/vim' }
+
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
 

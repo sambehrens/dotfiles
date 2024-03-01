@@ -111,6 +111,11 @@ alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
 alias vrc='vi ~/.vimrc'
 
+# neovim or nvim
+alias n="nvim"
+alias nrc="nvim ~/.config/nvim/init.vim"
+alias nil="nvim ~/.config/nvim/init.lua"
+
 # scripts
 alias mkex='chmod +x'
 alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
