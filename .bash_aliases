@@ -1,3 +1,4 @@
+alias repos='cd ~/Documents/repos'
 # git
 alias ga='git add'
 alias gaa='ga .'
