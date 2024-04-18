@@ -47,7 +47,13 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
 
+" Show comman
+Plug 'liuchengxu/vim-which-key'
+
 call plug#end()
+
+" WhichKey configs
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
@@ -243,6 +249,7 @@ nnoremap <leader>u <C-^>
 
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
+vnoremap <leader>F :Rg<CR>
 
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
