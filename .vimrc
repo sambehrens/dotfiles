@@ -252,7 +252,6 @@ nnoremap <leader>u <C-^>
 
 " Ripgrep search
 nnoremap <leader>F :Rg<CR>
-vnoremap <leader>F :Rg<CR>
 
 " close windows faster with ctrl x
 nnoremap <leader>x :close<CR>
@@ -274,9 +273,6 @@ endfunc
 
 " source vimrc so easy
 nnoremap <leader>sv :source ~/.vimrc<CR>
-
-" vim fugitive (git)
-nnoremap <leader>gb :Git blame<CR>
 
 " coc.nvim
 let g:coc_global_extensions = [
@@ -331,8 +327,11 @@ let g:netrw_winsize = 25
 " Open files in vertical window
 let g:netrw_browse_split = 4
 
+" vim fugitive (git)
 " fugitive-gitlab domains
 let g:fugitive_gitlab_domains = ['https://git.dataminr.com']
+nnoremap <leader>gb :Git blame<CR>
+
 
 " Colors!
 set background=light

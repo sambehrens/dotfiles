@@ -76,6 +76,7 @@ alias glme='git log --author="Behrens"'
 alias gsta='git stash'
 alias gsap='git stash apply'
 alias gsh='git show head'
+alias gcl='git clone'
 
 # log changes to a line
 function gll() {
