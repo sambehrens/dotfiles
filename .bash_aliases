@@ -1,3 +1,4 @@
+alias repos='cd ~/Documents/repos'
 # git
 alias ga='git add'
 alias gaa='ga .'
@@ -111,6 +112,11 @@ alias vbr='vi ~/.bashrc'
 alias vbcs='vi ~/.bash_aliases_cspecific'
 alias vrc='vi ~/.vimrc'
 
+# neovim or nvim
+alias n="nvim"
+alias nrc="nvim ~/.config/nvim/init.vim"
+alias nil="nvim ~/.config/nvim/init.lua"
+
 # scripts
 alias mkex='chmod +x'
 alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
@@ -190,3 +196,7 @@ function day () {
     cp -v ~/Documents/rust/advent_template.rs ~/Documents/rust/advent_day_$1_q1/src/main.rs
     cd ~/Documents/rust/advent_day_$1_q1
 }
+
+# run postgres locally
+alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
+alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
