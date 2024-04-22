@@ -108,10 +108,6 @@ set autoindent
 set smartindent
 set fileformat=unix
 
-" File type specific tab sizes
-autocmd FileType rust setlocal shiftwidth=4 softtabstop=4
-autocmd FileType python setlocal shiftwidth=4 softtabstop=4
-
 " Move cursor to word when searching
 set incsearch
 
@@ -139,8 +135,16 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" File type specific tab sizes
+autocmd FileType rust setlocal shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4
+
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+
+" this makes it so indents don't go away when I leave a line
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
 
 " Leader key stuff
 " Set leader key to Space
@@ -178,9 +182,6 @@ nnoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
 " format on enter, <cr> could be remapped by other vim plugin
 " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>x\<BS>"
-" this makes it so indents don't go away when I leave a line
-nnoremap o ox<BS>
-nnoremap O Ox<BS>
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -355,4 +356,3 @@ hi yamlFlowString ctermfg=28
 hi jsonKeywordMatch ctermfg=92
 hi jsonQuote ctermfg=0
 hi pythonString ctermfg=28
-
