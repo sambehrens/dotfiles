@@ -132,6 +132,8 @@ export EDITOR='vim'
 source ~/.zsh_aliases
 source ~/.bash_aliases
 
+[ -f ~/.zsh_computer_specific.zsh ] && source ~/.zsh_computer_specific.zsh
+
 source ~/.fzfgitfunctions.zsh
 
 # Less won't be used if it fits in the page
@@ -212,8 +214,6 @@ export PATH="$PNPM_HOME:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-[ -f ~/.zsh_computer_specific.zsh ] && source ~/.zsh_computer_specific.zsh
 
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
