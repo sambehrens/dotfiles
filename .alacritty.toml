@@ -12,6 +12,12 @@ save_to_clipboard = true
 
 [window]
 option_as_alt = "Both"
+padding = { x = 5, y = 5 }
+dynamic_padding = true
+startup_mode = "Maximized"
+
+[scrolling]
+history = 1000000
 
 
 # Colors (Alabaster)
