@@ -6,7 +6,7 @@ size = 16
 
 [cursor]
 # style = { blinking = "On", shape = "Block" }
-# vi_mode_style = { blinking = "On", shape = "Beam" }
+vi_mode_style = { blinking = "Off", shape = "Block" }
 
 [selection]
 save_to_clipboard = true
