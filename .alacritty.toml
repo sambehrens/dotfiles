@@ -17,7 +17,7 @@ dynamic_padding = true
 startup_mode = "Maximized"
 
 [scrolling]
-history = 1000000
+history = 100000
 
 
 # Colors (Alabaster)
