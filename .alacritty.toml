@@ -1,10 +1,18 @@
 [font]
 normal = { family = "JetBrains Mono NL", style = "ExtraLight" }
+bold = { style = "Regular" }
 size = 16
 
 [cursor]
 # style = { blinking = "On", shape = "Beam" }
 # vi_mode_style = { blinking = "Off", shape = "Beam" }
+
+[selection]
+save_to_clipboard = true
+
+[window]
+option_as_alt = "Both"
+
 
 # Colors (Alabaster)
 # author tonsky
