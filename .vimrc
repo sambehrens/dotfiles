@@ -50,13 +50,10 @@ Plug 'rust-sailfish/sailfish', { 'rtp': 'syntax/vim' }
 " typescript styntax stuff
 " Plug 'leafgarland/typescript-vim'
 
-" Show comman
-Plug 'liuchengxu/vim-which-key'
+" Surround words and phrases with stuff ('[etc.]')
+Plug 'tpope/vim-surround'
 
 call plug#end()
-
-" WhichKey configs
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
@@ -84,7 +81,8 @@ set autowriteall
 set updatetime=100
 
 " Set keycode delays to 0 so CTRL-[ updates immediately
-set timeoutlen=1000 ttimeoutlen=0
+" default timeoutlen is 1000
+set timeoutlen=500 ttimeoutlen=0
 
 set nocompatible
 
@@ -164,6 +162,11 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>do <Plug>(coc-codeaction-cursor)
 nmap <leader>do <Plug>(coc-codeaction-cursor)
 vmap <leader>do <Plug>(coc-codeaction-cursor)
+" Makes Alt + Enter do codeaction like IntelliJ
+" Make sure to set Left Option to Esc+ in iTerm for this to work
+xnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
+vnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
+nnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
 
 " Coc window navigation
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
@@ -178,7 +181,6 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>x
 " this makes it so indents don't go away when I leave a line
 nnoremap o ox<BS>
 nnoremap O Ox<BS>
-
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -331,7 +333,6 @@ let g:netrw_browse_split = 4
 " fugitive-gitlab domains
 let g:fugitive_gitlab_domains = ['https://git.dataminr.com']
 nnoremap <leader>gb :Git blame<CR>
-
 
 " Colors!
 set background=light
