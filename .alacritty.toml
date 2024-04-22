@@ -2,10 +2,11 @@
 normal = { family = "JetBrains Mono NL", style = "ExtraLight" }
 bold = { style = "Regular" }
 size = 16
+# offset = { y = 2 }
 
 [cursor]
-# style = { blinking = "On", shape = "Beam" }
-# vi_mode_style = { blinking = "Off", shape = "Beam" }
+# style = { blinking = "On", shape = "Block" }
+# vi_mode_style = { blinking = "On", shape = "Beam" }
 
 [selection]
 save_to_clipboard = true
