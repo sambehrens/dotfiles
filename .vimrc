@@ -116,8 +116,8 @@ set fileformat=unix
 set incsearch
 
 " Enable the enhanced completion thing for commands
-set wildmenu
-set wop=fuzzy,pum
+" set wildmenu
+" set wop=fuzzy,pum
 
 " Ignore case when searching unless search contains uppercase
 set ignorecase
@@ -342,36 +342,50 @@ nnoremap <leader>gb :Git blame<CR>
 
 " Wilder menu stuff
 call wilder#setup({'modes': [':', '/', '?']})
-" wilder#popupmenu_border_theme() is optional.
-" 'min_height' : sets the minimum height of the popupmenu
-"              : can also be a number
-" 'max_height' : set to the same as 'min_height' to set the popupmenu to a fixed height
 " 'reverse'    : if 1, shows the candidates from bottom to top
 call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
       \ 'highlighter': wilder#basic_highlighter(),
+      \ 'highlights': {
+      \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
+      \ },
       \ 'min_width': '100%',
-      \ 'reverse': 0,
+      \ 'max_height': '50%',
+      \ 'reverse': 1,
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
       \ })))
+" Key map
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<C-k>',
+      \ 'previous_key': '<C-j>',
+      \ 'accept_key': '<Tab>',
+      \ 'reject_key': '<C-u>',
+      \ })
 
 " Colors!
 set background=light
 let g:jb_style='light'
 colorscheme jb
+hi Visual guibg=#b0d8ff
 let g:airline_theme = "dark"
+" override the highlight color
+hi Visual ctermbg=32
 set termguicolors
 " Make strings green
-hi typescriptString ctermfg=28
-hi typescriptStringLiteralType ctermfg=28
-hi typescriptTemplate ctermfg=28
-hi jsxString ctermfg=28
-hi jsString ctermfg=28
-hi cssStringQ ctermfg=28
+" hi typescriptString ctermfg=28
+" hi typescriptStringLiteralType ctermfg=28
+" hi typescriptTemplate ctermfg=28
+" hi jsxString ctermfg=28
+" hi jsString ctermfg=28
+" hi cssStringQ ctermfg=28
 " Fix the terrible floating window that makes it so you can't read errors
 hi CocErrorFloat guifg=#585858
-hi diffRemoved ctermbg=225
-hi jsonString ctermfg=28
-hi jsonKeyword ctermfg=91
-hi yamlFlowString ctermfg=28
-hi jsonKeywordMatch ctermfg=92
-hi jsonQuote ctermfg=0
-hi pythonString ctermfg=28
+" hi diffRemoved ctermbg=225
+" hi jsonString ctermfg=28
+" hi jsonKeyword ctermfg=91
+" hi yamlFlowString ctermfg=28
+" hi jsonKeywordMatch ctermfg=92
+" hi jsonQuote ctermfg=0
+" hi pythonString ctermfg=28
