@@ -10,8 +10,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " color scheme
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'cormacrelf/vim-colors-github'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'cormacrelf/vim-colors-github'
 Plug 'devsjc/vim-jb'
 
 " rust official vim plugin
@@ -327,13 +327,13 @@ vnoremap <leader>cc :call nerdcommenter#Comment('x', 'toggle')<CR>
 
 " Netrw file explorer settings
 " Use a tree view
-let g:netrw_liststyle = 3
+" let g:netrw_liststyle = 3
 " Hide top banner
-let g:netrw_banner = 0
+" let g:netrw_banner = 0
 " Set the file explorer to 25% of the page width
-let g:netrw_winsize = 25
+" let g:netrw_winsize = 25
 " Open files in vertical window
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 
 " vim fugitive (git)
 " fugitive-gitlab domains
@@ -365,14 +365,19 @@ call wilder#setup({
       \ })
 
 " Colors!
+set termguicolors
 set background=light
-let g:jb_style='light'
 colorscheme jb
+let g:jb_style='light'
+" let g:jb_color_overrides= #{
+"       \ editor: #{ gui: "#ffffff", cterm: "white" }
+"       \ }
 hi Visual guibg=#b0d8ff
 let g:airline_theme = "dark"
 " override the highlight color
 hi Visual ctermbg=32
-set termguicolors
+hi typescriptCall ctermfg=16
+hi typescriptDestructureVariable ctermfg=16
 " Make strings green
 " hi typescriptString ctermfg=28
 " hi typescriptStringLiteralType ctermfg=28
@@ -381,7 +386,7 @@ set termguicolors
 " hi jsString ctermfg=28
 " hi cssStringQ ctermfg=28
 " Fix the terrible floating window that makes it so you can't read errors
-hi CocErrorFloat guifg=#585858
+" hi CocErrorFloat guifg=#585858
 " hi diffRemoved ctermbg=225
 " hi jsonString ctermfg=28
 " hi jsonKeyword ctermfg=91

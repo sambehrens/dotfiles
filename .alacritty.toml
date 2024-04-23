@@ -22,11 +22,10 @@ history = 100000
 
 
 # Colors (Alabaster)
-# author tonsky
 
 [colors.primary]
-background = '#F7F7F7'
-foreground = '#434343'
+background = '#FFFFFF'
+foreground = '#000000'
 
 [colors.cursor]
 text = '#F7F7F7'
