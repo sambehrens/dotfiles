@@ -367,17 +367,14 @@ call wilder#setup({
 " Colors!
 set termguicolors
 set background=light
-colorscheme jb
-let g:jb_style='light'
-" let g:jb_color_overrides= #{
-"       \ editor: #{ gui: "#ffffff", cterm: "white" }
-"       \ }
-hi Visual guibg=#b0d8ff
 let g:airline_theme = "dark"
+let g:jb_style='light'
+colorscheme jb
 " override the highlight color
-hi Visual ctermbg=32
+hi Visual guibg=#b0d8ff
 hi typescriptCall ctermfg=16
 hi typescriptDestructureVariable ctermfg=16
+hi! link vimOption Type
 " Make strings green
 " hi typescriptString ctermfg=28
 " hi typescriptStringLiteralType ctermfg=28
