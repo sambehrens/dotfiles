@@ -1,8 +1,8 @@
 [font]
-normal = { family = "JetBrains Mono NL", style = "ExtraLight" }
+normal = { family = "JetBrains Mono NL", style = "Light" }
 bold = { style = "Regular" }
 size = 15.5
-offset = { y = 5, x = 0 }
+# offset = { y = 5, x = 0 }
 
 [cursor]
 # style = { blinking = "On", shape = "Block" }
