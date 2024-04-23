@@ -381,10 +381,10 @@ set termguicolors
 " hi jsString ctermfg=28
 " hi cssStringQ ctermfg=28
 " Fix the terrible floating window that makes it so you can't read errors
-hi CocErrorFloat guifg=#585858
+" hi CocErrorFloat guifg=#585858
 " hi diffRemoved ctermbg=225
 " hi jsonString ctermfg=28
-" hi jsonKeyword ctermfg=91
+hi jsonKeyword ctermfg=91
 " hi yamlFlowString ctermfg=28
 " hi jsonKeywordMatch ctermfg=92
 " hi jsonQuote ctermfg=0
