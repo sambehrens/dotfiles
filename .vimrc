@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 " color scheme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'cormacrelf/vim-colors-github'
+Plug 'devsjc/vim-jb'
 
 " rust official vim plugin
 Plug 'rust-lang/rust.vim'
@@ -52,6 +53,9 @@ Plug 'rust-sailfish/sailfish', { 'rtp': 'syntax/vim' }
 
 " Surround words and phrases with stuff ('[etc.]')
 Plug 'tpope/vim-surround'
+
+" Get a better autocomplete window
+Plug 'gelguy/wilder.nvim'
 
 call plug#end()
 
@@ -113,6 +117,7 @@ set incsearch
 
 " Enable the enhanced completion thing for commands
 set wildmenu
+set wop=fuzzy,pum
 
 " Ignore case when searching unless search contains uppercase
 set ignorecase
@@ -335,9 +340,23 @@ let g:netrw_browse_split = 4
 let g:fugitive_gitlab_domains = ['https://git.dataminr.com']
 nnoremap <leader>gb :Git blame<CR>
 
+" Wilder menu stuff
+call wilder#setup({'modes': [':', '/', '?']})
+" wilder#popupmenu_border_theme() is optional.
+" 'min_height' : sets the minimum height of the popupmenu
+"              : can also be a number
+" 'max_height' : set to the same as 'min_height' to set the popupmenu to a fixed height
+" 'reverse'    : if 1, shows the candidates from bottom to top
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'min_width': '100%',
+      \ 'reverse': 0,
+      \ })))
+
 " Colors!
 set background=light
-colorscheme github
+let g:jb_style='light'
+colorscheme jb
 let g:airline_theme = "dark"
 set termguicolors
 " Make strings green
