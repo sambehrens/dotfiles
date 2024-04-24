@@ -11,6 +11,9 @@ vi_mode_style = { blinking = "Off", shape = "Block" }
 [selection]
 save_to_clipboard = true
 
+[terminal]
+osc52 = "CopyPaste"
+
 [window]
 option_as_alt = "Both"
 padding = { x = 5, y = 5 }
