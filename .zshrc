@@ -226,3 +226,10 @@ jdk() {
 
 # apple key repeat settings
 defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
+
+# bun completions
+[ -s "/Users/sambehrens/.bun/_bun" ] && source "/Users/sambehrens/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
