@@ -160,6 +160,18 @@ autocmd FileType javascript imap <buffer> ;log console.log(
 autocmd FileType typescript imap <buffer> ;log console.log(
 autocmd FileType typescriptreact imap <buffer> ;log console.log(
 autocmd FileType javascriptreact imap <buffer> ;log console.log(
+autocmd FileType typescriptreact imap <buffer> ;rc console.log(
+autocmd FileType javascriptreact imap <buffer> ;rc console.log(
+" Auto insert react component boiler plate
+function! CreateReactComponent()
+    call inputsave()
+    let componentName = input('Component name: ')
+    call inputrestore()
+    execute "normal! itype " . componentName . "Props = {\n \n}\n\nexport function " . componentName . "(props: " . componentName . "Props) {\n \n}\n"
+    execute "normal! 2k 2l"
+endfunction
+autocmd FileType typescriptreact nnoremap <leader>rc :call CreateReactComponent()<CR>
+autocmd FileType javascriptreact nnoremap <leader>rc :call CreateReactComponent()<CR>
 
 " Coc stuff
 " Coc Symbol renaming.
