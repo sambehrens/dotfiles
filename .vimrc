@@ -172,6 +172,7 @@ function! CreateReactComponent()
 endfunction
 autocmd FileType typescriptreact nnoremap <leader>rc :call CreateReactComponent()<CR>
 autocmd FileType javascriptreact nnoremap <leader>rc :call CreateReactComponent()<CR>
+autocmd FileType rust imap <buffer> ;log println!("
 
 " Coc stuff
 " Coc Symbol renaming.
