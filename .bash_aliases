@@ -114,7 +114,7 @@ alias vbcs='vi ~/.bash_aliases_cspecific'
 alias vrc='vi ~/.vimrc'
 
 # neovim or nvim
-alias n="nvim"
+# alias n="nvim"
 alias nrc="nvim ~/.config/nvim/init.vim"
 alias nil="nvim ~/.config/nvim/init.lua"
 

@@ -162,6 +162,7 @@ autocmd FileType typescriptreact imap <buffer> ;log console.log(
 autocmd FileType javascriptreact imap <buffer> ;log console.log(
 autocmd FileType typescriptreact imap <buffer> ;rc console.log(
 autocmd FileType javascriptreact imap <buffer> ;rc console.log(
+autocmd FileType java imap <buffer> ;log System.out.println(
 " Auto insert react component boiler plate
 function! CreateReactComponent()
     call inputsave()
