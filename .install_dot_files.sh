@@ -23,3 +23,7 @@ $(brew --prefix)/opt/fzf/install
 source ~/.zshrc
 
 brew install ripgrep
+
+# Key Repeat settings for Mac
+defaults write -g InitialKeyRepeat -int 12
+defaults write -g KeyRepeat -int 2
