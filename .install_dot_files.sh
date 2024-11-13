@@ -31,3 +31,15 @@ brew install ripgrep
 defaults write -g InitialKeyRepeat -int 12
 defaults write -g KeyRepeat -int 2
 defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Remove default mac shortcuts
+VALUE='<dict><key>enabled_context_menu</key><false/><key>enabled_services_menu</key><false/><key>presentation_modes</key><dict><key>ContextMenu</key><false/><key>ServicesMenu</key><false/></dict></dict>'
+
+defaults write pbs NSServicesStatus \
+  -dict-add \
+  'com.apple.Terminal - Open man Page in Terminal - openManPage' \
+  "$VALUE"
+defaults write pbs NSServicesStatus \
+  -dict-add \
+  'com.apple.Terminal - Search man Page Index in Terminal - searchManPages' \
+  "$VALUE"
