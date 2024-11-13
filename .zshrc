@@ -226,6 +226,8 @@ jdk() {
 
 # apple key repeat settings
 defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
+# don't show the accent letters when holding a character down
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 # bun completions
 [ -s "/Users/sambehrens/.bun/_bun" ] && source "/Users/sambehrens/.bun/_bun"
