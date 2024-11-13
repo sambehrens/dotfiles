@@ -18,6 +18,9 @@ brew install git-delta
 
 brew install bat
 
+# Clear pacman animation
+brew install orangekame3/tap/paclear
+
 $(brew --prefix)/opt/fzf/install
 
 source ~/.zshrc
