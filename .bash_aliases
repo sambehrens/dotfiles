@@ -201,3 +201,19 @@ function day () {
 # run postgres locally
 alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
 alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
+
+mr () {
+  commit_message=$(git log -1 --pretty=%B)
+  if [[ -z "$commit_message" ]]; then
+    echo "Error: No commit message found."
+    return 1
+  fi
+  branch_name=$(echo "$commit_message" | tr '[:upper:]' '[:lower:]' | tr -s '[:space:]' '-' | tr -cd '[:alnum:]-')
+  branch_name="${branch_name%-}"
+  git checkout -b "$branch_name"
+  glab mr create --fill --yes --squash-before-merge --remove-source-branch
+  git checkout main
+  git checkout master
+  git reset --hard @{upstream}
+  echo "Branch '$branch_name' created and merge request '$commit_message' created successfully."
+}

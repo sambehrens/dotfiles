@@ -235,3 +235,4 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
