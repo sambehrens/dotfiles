@@ -69,6 +69,9 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 map! ;; <Esc> " map ;; to Esc
 
+" turn off swapfiles because they suck
+set noswapfile
+
 syntax on
 " Set mdx syntax because it doesn't seem to work
 au BufReadPost *.mdx set filetype=mdx
