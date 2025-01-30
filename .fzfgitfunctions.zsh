@@ -96,7 +96,7 @@ _gf() {
 # git checkout
 _gu() {
   is_in_git_repo || return
-  git branch -a --color=always --sort=committerdate | grep -v '/HEAD\s' |
+  git branch -a --color=always --sort=-committerdate | grep -v '/HEAD\s' |
   fzf-down --ansi --no-sort --multi --tac --reverse --preview-window right:70% \
     --expect 'ctrl-u,ctrl-h' \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)'
