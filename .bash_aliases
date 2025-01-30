@@ -214,8 +214,16 @@ mr () {
   glab mr create --fill --yes --squash-before-merge --remove-source-branch
   git checkout main
   git checkout master
-  git stash
+  git diff --exit-code --quiet
+  if [[ $? -ne 0 ]]; then
+    git stash
+    stash_created=true
+  fi
   git reset --hard @{upstream}
-  git stash apply
+  if [[ "$stash_created" == true ]]; then
+    git stash apply
+  else
+    echo "No changes were stashed."
+  fi
   echo "Branch '$branch_name' created and merge request '$commit_message' created successfully."
 }
