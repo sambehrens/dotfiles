@@ -212,5 +212,10 @@ mr () {
   branch_name="${branch_name%-}"
   git checkout -b "$branch_name"
   glab mr create --fill --yes --squash-before-merge --remove-source-branch
+  git checkout main
+  git checkout master
+  git stash
+  git reset --hard @{upstream}
+  git stash apply
   echo "Branch '$branch_name' created and merge request '$commit_message' created successfully."
 }
