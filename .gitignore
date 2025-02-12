@@ -20,3 +20,4 @@
 !.vim/coc-settings.json
 !.config/zed/settings.json
 !.alacritty.toml
+!.config/ghostty/config
