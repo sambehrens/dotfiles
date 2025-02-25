@@ -94,6 +94,7 @@ alias grbo='git rebase --onto'
 alias grbis='git rebase --interactive --autosquash'
 alias grbism='git rebase --interactive --autosquash master'
 alias grbisa='git rebase --interactive --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
+alias grbmo='git fetch origin && git rebase origin/$(git rev-parse --verify origin/main >/dev/null 2>&1 && echo "main" || echo "master")'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
@@ -102,6 +103,8 @@ alias grso='git reset origin --hard'
 # navigation
 alias b='cd -'
 alias d='cd ~/Documents'
+alias p='cd ~/Documents/Projects'
+alias m='cd ~/Documents/Projects/messaging'
 
 # vi
 alias v='vim'
