@@ -5,7 +5,8 @@ alias gaa='ga .'
 alias gap='git add --patch'
 alias gai='git add --interactive'
 
-alias gs='git status'
+alias gs='git status -uno'
+alias gsg='git status'
 alias gss='git status --short'
 
 alias gc='git commit --verbose'
