@@ -5,7 +5,8 @@ alias gaa='ga .'
 alias gap='git add --patch'
 alias gai='git add --interactive'
 
-alias gs='git status'
+alias gs='git status -uno'
+alias gsg='git status'
 alias gss='git status --short'
 
 alias gc='git commit --verbose'
@@ -94,6 +95,7 @@ alias grbo='git rebase --onto'
 alias grbis='git rebase --interactive --autosquash'
 alias grbism='git rebase --interactive --autosquash master'
 alias grbisa='git rebase --interactive --autosquash $(glo --invert-grep -1 --pretty=format:"%h" --grep=fixup\!)^1'
+alias grbmo='git fetch origin && git rebase origin/$(git rev-parse --verify origin/main >/dev/null 2>&1 && echo "main" || echo "master")'
 
 # reset branch to head
 alias grsh='git reset HEAD --hard'
@@ -102,6 +104,8 @@ alias grso='git reset origin --hard'
 # navigation
 alias b='cd -'
 alias d='cd ~/Documents'
+alias p='cd ~/Documents/Projects'
+alias m='cd ~/Documents/Projects/messaging'
 
 # vi
 alias v='vim'
@@ -201,3 +205,29 @@ function day () {
 # run postgres locally
 alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
 alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
+
+mr () {
+  commit_message=$(git log -1 --pretty=%B)
+  if [[ -z "$commit_message" ]]; then
+    echo "Error: No commit message found."
+    return 1
+  fi
+  branch_name=$(echo "$commit_message" | tr '[:upper:]' '[:lower:]' | tr -s '[:space:]' '-' | tr -cd '[:alnum:]-')
+  branch_name="${branch_name%-}"
+  git checkout -b "$branch_name"
+  glab mr create --fill --yes --squash-before-merge --remove-source-branch
+  git checkout main
+  git checkout master
+  git diff --exit-code --quiet
+  if [[ $? -ne 0 ]]; then
+    git stash
+    stash_created=true
+  fi
+  git reset --hard @{upstream}
+  if [[ "$stash_created" == true ]]; then
+    git stash apply
+  else
+    echo "No changes were stashed."
+  fi
+  echo "Branch '$branch_name' created and merge request '$commit_message' created successfully."
+}
