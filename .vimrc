@@ -194,16 +194,24 @@ xnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
 vnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
 nnoremap <Esc><CR> <Plug>(coc-codeaction-cursor)
 
-" Coc window navigation
-inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
-inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
+"" Coc window navigation
+" Navigate the popup menu using <C-j> and <C-k>
+inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+
+" Only map <C-j> and <C-k> in normal mode for CoC if PUM is visible
 nnoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
 nnoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
+
+" Avoid conflicts with other mappings
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>x\<BS>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>x\<BS>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
