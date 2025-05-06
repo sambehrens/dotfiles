@@ -17,7 +17,7 @@ style = "bg:193 green"
 format = "[ $symbol $branch(:$remote_branch) ]($style) "
 
 [git_metrics]
-disabled = false
+disabled = true
 added_style = "green"
 deleted_style = "red"
 
