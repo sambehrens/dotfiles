@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$PATH:`pwd`/flutter/bin"
 export PATH="/Users/sbehrens/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
@@ -116,6 +115,12 @@ source $ZSH/oh-my-zsh.sh
 
 # Set editor as vim
 export EDITOR='vim'
+
+# This is to fix an issue in Ghostty
+# https://github.com/tmux/tmux/issues/4338#issuecomment-2600929780
+# https://github.com/ghostty-org/ghostty/discussions/5071
+bindkey -rpM viins '^['
+[[ ${TERM} == xterm-ghostty && ! -n "$TMUX" ]] && bindkey '^[[91;5u' vi-cmd-mode
 
 # Escape with jk in terminal
 # commented out because i'm trying to get used to ctrl + [

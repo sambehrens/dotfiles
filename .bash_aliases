@@ -125,6 +125,7 @@ alias nil="nvim ~/.config/nvim/init.lua"
 # scripts
 alias mkex='chmod +x'
 alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
+alias dog='cat'
 alias cat='bat'
 
 # background services

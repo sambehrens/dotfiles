@@ -204,7 +204,7 @@ nnoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<Down>"
 nnoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<Up>"
 
 " Avoid conflicts with other mappings
-if !exists('g:ideavim_version')
+if !has('ide')
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 endif
 " inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
