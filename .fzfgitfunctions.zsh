@@ -112,11 +112,86 @@ _gn() {
 }
 
 # git worktree list with status preview
+# _gw() {
+#    is_in_git_repo || return
+#    git worktree list |
+#    fzf-down --ansi --preview 'git -C {1} -c color.status=always status --short' |
+#    awk '{print $1}'
+# }
+
+# git worktree list with status preview and creation options
 _gw() {
-   is_in_git_repo || return
-   git worktree list |
-   fzf-down --ansi --preview 'git -C {1} -c color.status=always status --short' |
-   awk '{print $1}'
+  is_in_git_repo || return
+  (
+    git worktree list;
+    echo "CREATE: New worktree";
+    echo "CREATE: New for existing branch";
+    echo "CREATE: Throwaway worktree"
+  ) |
+  fzf-down --ansi --header 'Select a worktree or a CREATE option' --preview '
+    if [[ {} == *"New worktree"* ]]; then
+      echo "➡️ Create a new branch and worktree with the same name."
+      echo "   Branched from the current branch."
+    elif [[ {} == *"existing branch"* ]]; then
+      echo "➡️ Use the branch selector (fzf) to pick an existing branch."
+      echo "   Then, create a worktree for it."
+    elif [[ {} == *"Throwaway"* ]]; then
+      echo "➡️ Create a temporary, detached worktree for experiments."
+      echo "   Based on the current HEAD."
+    else
+      git -C {1} -c color.status=always status --short
+    fi'
+}
+
+# Helper function to create a git worktree and cd into it.
+# Called by the fzf-gw-widget to avoid ZLE recursion errors.
+# Helper function to create a git worktree and cd into it.
+# Called by the fzf-gw-widget to avoid ZLE recursion errors.
+_gwc() {
+  local mode="$1"
+  local branch="$2"
+  local worktree_name
+
+  case "$mode" in
+    new)
+      local current_branch=$(git rev-parse --abbrev-ref HEAD)
+      read -r "worktree_name?Enter name for new branch & worktree (from '$current_branch'): "
+      if [[ -n "$worktree_name" ]]; then
+        # Creates new branch from current, adds worktree, and cds
+        if git worktree add "../.worktrees/$worktree_name" -b "$worktree_name"; then
+          cd "../.worktrees/$worktree_name"
+        fi
+      else
+        echo "Aborted: No name entered."
+      fi
+      ;;
+    existing)
+      [[ -z "$branch" ]] && { echo "Aborted: No branch selected."; return; }
+      read -r "worktree_name?Enter path for worktree (default: '$branch'): "
+      worktree_name=${worktree_name:-$branch} # Use branch name as default path
+      if [[ -n "$worktree_name" ]]; then
+        # Adds worktree for existing branch and cds
+        if git worktree add "../.worktrees/$worktree_name" "$branch"; then
+          cd "../.worktrees/$worktree_name"
+        fi
+      fi
+      ;;
+    throwaway)
+      read -r "worktree_name?Enter path for throwaway worktree: "
+      if [[ -n "$worktree_name" ]]; then
+        # Adds detached worktree and cds
+        if git worktree add --detach "../.worktrees/$worktree_name"; then
+          cd "../.worktrees/$worktree_name"
+        fi
+      else
+        echo "Aborted: No name entered."
+      fi
+      ;;
+    *)
+      echo "Error: Unknown mode '$mode'."
+      return 1
+      ;;
+  esac
 }
 
 join-lines() {
@@ -126,13 +201,43 @@ join-lines() {
   done
 }
 
-fzf-gw-widget() {
-   local selected_path=$(_gw)
-   zle reset-prompt
-   [[ -z "$selected_path" ]] && return
+# fzf-gw-widget() {
+#    local selected_path=$(_gw)
+#    zle reset-prompt
+#    [[ -z "$selected_path" ]] && return
 
-   BUFFER="cd \"$selected_path\""
-   zle accept-line
+#    BUFFER="cd \"$selected_path\""
+#    zle accept-line
+# }
+
+fzf-gw-widget() {
+  local selection=$(_gw)
+  zle reset-prompt
+  [[ -z "$selection" ]] && return
+
+  # The widget's job is to build the command, not execute it.
+  # The shell executes it after the widget finishes.
+  case "$selection" in
+    "CREATE: New worktree")
+      BUFFER="_gwc new"
+      zle accept-line
+      ;;
+    "CREATE: New for existing branch")
+      # Chain commands: first run the branch selector (_gb), then call our helper.
+      BUFFER="local branch=\$(_gb); _gwc existing \$branch"
+      zle accept-line
+      ;;
+    "CREATE: Throwaway worktree")
+      BUFFER="_gwc throwaway"
+      zle accept-line
+      ;;
+    *)
+      # Default action: cd to an existing worktree.
+      local selected_path=$(echo "$selection" | awk '{print $1}')
+      BUFFER="cd \"$selected_path\""
+      zle accept-line
+      ;;
+  esac
 }
 
 zle -N fzf-gw-widget
