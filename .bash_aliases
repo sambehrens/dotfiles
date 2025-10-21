@@ -125,8 +125,8 @@ alias nil="nvim ~/.config/nvim/init.lua"
 # scripts
 alias mkex='chmod +x'
 alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
-alias dog='cat'
-alias cat='bat'
+# alias dog='cat'
+# alias cat='bat'
 
 # background services
 alias mgo='mongod --config /usr/local/etc/mongod.conf'
@@ -218,7 +218,6 @@ mr () {
   git checkout -b "$branch_name"
   glab mr create --fill --yes --squash-before-merge --remove-source-branch
   git checkout main
-  git checkout master
   git diff --exit-code --quiet
   if [[ $? -ne 0 ]]; then
     git stash

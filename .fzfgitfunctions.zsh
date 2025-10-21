@@ -111,12 +111,32 @@ _gn() {
     --preview "grep -o '[a-f0-9]\{7,\}' <<< {} | head -1 | xargs -I {} git show --color=always -u {} $@ | delta"
 }
 
+# git worktree list with status preview
+_gw() {
+   is_in_git_repo || return
+   git worktree list |
+   fzf-down --ansi --preview 'git -C {1} -c color.status=always status --short' |
+   awk '{print $1}'
+}
+
 join-lines() {
   local item
   while read item; do
     echo -n "${(q)item} "
   done
 }
+
+fzf-gw-widget() {
+   local selected_path=$(_gw)
+   zle reset-prompt
+   [[ -z "$selected_path" ]] && return
+
+   BUFFER="cd \"$selected_path\""
+   zle accept-line
+}
+
+zle -N fzf-gw-widget
+bindkey '^g^w' fzf-gw-widget
 
 fzf-gf-widget() {
     local lines=$(_gf $1)
