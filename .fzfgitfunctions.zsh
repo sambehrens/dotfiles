@@ -111,15 +111,7 @@ _gn() {
     --preview "grep -o '[a-f0-9]\{7,\}' <<< {} | head -1 | xargs -I {} git show --color=always -u {} $@ | delta"
 }
 
-# git worktree list with status preview
-# _gw() {
-#    is_in_git_repo || return
-#    git worktree list |
-#    fzf-down --ansi --preview 'git -C {1} -c color.status=always status --short' |
-#    awk '{print $1}'
-# }
-
-# git worktree list with status preview and creation options
+# git worktree list with status preview and creation/deletion options
 _gw() {
   is_in_git_repo || return
   (
@@ -128,7 +120,7 @@ _gw() {
     echo "CREATE: New for existing branch";
     echo "CREATE: Throwaway worktree"
   ) |
-  fzf-down --ansi --header 'Select a worktree or a CREATE option' --preview '
+  fzf-down --ansi --header 'Select worktree | CTRL-D to remove' --expect=ctrl-d --preview '
     if [[ {} == *"New worktree"* ]]; then
       echo "➡️ Create a new branch and worktree with the same name."
       echo "   Branched from the current branch."
@@ -194,54 +186,99 @@ _gwc() {
   esac
 }
 
+# Helper function to confirm and remove a git worktree.
+_gwr() {
+  local path_to_remove="$1"
+  if [[ -z "$path_to_remove" ]]; then
+    echo "Error: No worktree path specified for removal."
+    return 1
+  fi
+
+  # This `read` command will now wait for user input correctly.
+  echo # Add a newline for better prompt spacing
+  local choice
+  read "choice?Remove worktree '$path_to_remove'? [Y/n] "
+
+  # Check if choice is empty (Enter), 'y', or 'Y'.
+  if [[ -z "$choice" || "$choice:l" == "y" ]]; then
+    if git worktree remove --force "$path_to_remove"; then
+      git worktree prune
+      echo "✅ Worktree '$path_to_remove' removed."
+    fi
+  else
+    echo "❌ Removal cancelled."
+  fi
+}
+
+fzf-gw-widget() {
+  # Read the full output of _gw into a Zsh array, splitting on newlines.
+  local -a lines
+  lines=(${(f)"$(_gw)"})
+
+  # If the array is empty, the user cancelled with Esc.
+  if (( ${#lines[@]} == 0 )); then
+    zle reset-prompt
+    return
+  fi
+
+  # Check the array size to see what key was pressed.
+  # If size > 1, a key from --expect was pressed (e.g., ctrl-d).
+  if (( ${#lines[@]} > 1 )); then
+    local key="${lines[1]}"      # The key is the first element
+    local selection="${lines[2]}" # The selected item is the second
+
+    if [[ "$key" == "ctrl-d" ]]; then
+      # --- DELETION LOGIC (invoked by Ctrl-D) ---
+      local path_to_remove=$(echo "$selection" | awk '{print $1}')
+
+      if [[ "$selection" == "CREATE:"* ]]; then
+        echo "Cannot remove a CREATE option."
+        zle reset-prompt
+        return
+      fi
+
+      # Set the BUFFER to call our new helper function and execute it.
+      BUFFER="_gwr \"$path_to_remove\""
+      zle accept-line
+    fi
+  else
+    # --- NORMAL SELECTION LOGIC (invoked by Enter) ---
+    local selection="${lines[1]}"
+    zle reset-prompt
+
+    case "$selection" in
+      "CREATE: New worktree")
+        BUFFER="_gwc new"
+        zle accept-line
+        ;;
+      "CREATE: New for existing branch")
+        BUFFER="local branch=\$(_gb); _gwc existing \$branch"
+        zle accept-line
+        ;;
+      "CREATE: Throwaway worktree")
+        BUFFER="_gwc throwaway"
+        zle accept-line
+        ;;
+      *)
+        # Default action: cd to an existing worktree.
+        local selected_path=$(echo "$selection" | awk '{print $1}')
+        BUFFER="cd \"$selected_path\""
+        zle accept-line
+        ;;
+    esac
+  fi
+}
+
+zle -N fzf-gw-widget
+bindkey '^g^w' fzf-gw-widget
+
+
 join-lines() {
   local item
   while read item; do
     echo -n "${(q)item} "
   done
 }
-
-# fzf-gw-widget() {
-#    local selected_path=$(_gw)
-#    zle reset-prompt
-#    [[ -z "$selected_path" ]] && return
-
-#    BUFFER="cd \"$selected_path\""
-#    zle accept-line
-# }
-
-fzf-gw-widget() {
-  local selection=$(_gw)
-  zle reset-prompt
-  [[ -z "$selection" ]] && return
-
-  # The widget's job is to build the command, not execute it.
-  # The shell executes it after the widget finishes.
-  case "$selection" in
-    "CREATE: New worktree")
-      BUFFER="_gwc new"
-      zle accept-line
-      ;;
-    "CREATE: New for existing branch")
-      # Chain commands: first run the branch selector (_gb), then call our helper.
-      BUFFER="local branch=\$(_gb); _gwc existing \$branch"
-      zle accept-line
-      ;;
-    "CREATE: Throwaway worktree")
-      BUFFER="_gwc throwaway"
-      zle accept-line
-      ;;
-    *)
-      # Default action: cd to an existing worktree.
-      local selected_path=$(echo "$selection" | awk '{print $1}')
-      BUFFER="cd \"$selected_path\""
-      zle accept-line
-      ;;
-  esac
-}
-
-zle -N fzf-gw-widget
-bindkey '^g^w' fzf-gw-widget
 
 fzf-gf-widget() {
     local lines=$(_gf $1)
