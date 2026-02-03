@@ -116,11 +116,10 @@ source $ZSH/oh-my-zsh.sh
 # Set editor as vim
 export EDITOR='vim'
 
-# This is to fix an issue in Ghostty
-# https://github.com/tmux/tmux/issues/4338#issuecomment-2600929780
+# Fix for Ghostty vi-mode: Ghostty uses fixterms encoding which sends ^[[91;5u for Ctrl+[
+# instead of the traditional ^[. This maps that sequence directly to vi-cmd-mode.
 # https://github.com/ghostty-org/ghostty/discussions/5071
-# bindkey -rpM viins '^['
-# [[ ${TERM} == xterm-ghostty && ! -n "$TMUX" ]] && bindkey '^[[91;5u' vi-cmd-mode
+[[ ${TERM} == xterm-ghostty ]] && bindkey '^[[91;5u' vi-cmd-mode
 
 # Escape with jk in terminal
 # commented out because i'm trying to get used to ctrl + [
@@ -245,9 +244,11 @@ export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias claude="/Users/sbehrens/.claude/local/claude"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/sbehrens/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export JAVA_HOME=/Users/sbehrens/Library/Java/JavaVirtualMachines/corretto-21.0.7/Contents/Home
+
+# opencode
+export PATH=/Users/sbehrens/.opencode/bin:$PATH

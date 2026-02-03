@@ -124,7 +124,6 @@ alias nil="nvim ~/.config/nvim/init.lua"
 
 # scripts
 alias mkex='chmod +x'
-alias iterm='cd ~/Library/Application\ Support/iTerm2/Scripts/'
 # alias dog='cat'
 # alias cat='bat'
 
@@ -152,16 +151,8 @@ alias dot='dfca -m "Update dotfiles"; df pull; szr; df push --quiet &'
 alias serv='python3 -m http.server 8080'
 
 # other fun stuff
-alias google='open -a "Google Chrome" https://www.google.com/search?q='
-alias shutdown='sudo shutdown now'
 alias restart='sudo shutdown -r now'
 alias me='cat ~/me'
-alias ws='open -a Webstorm .'
-alias pc='open -a Pycharm .'
-
-# java stuff
-alias mcp='mvn clean package'
-alias j8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version'
 
 # directories
 alias gift='cd ~/Documents/giftgo'
@@ -169,21 +160,9 @@ alias r='cd ~/Documents/repos'
 alias 1='cd ~/Documents/repos/wordz'
 alias 2='cd ~/Documents/repos/type-race'
 
-# ANTLR
-alias ant='export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"'
-alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
-
 # Get pid of process using port 5000
 alias pid5='lsof -i tcp:5000'
 alias kino='kill $(pid5 | grep -Eo "[0-9]{1,5}" | head -1)'
-
-# npm
-alias ng="npm list -g --depth=0 2>/dev/null"
-alias nl="npm list --depth=0 2>/dev/null"
-
-# lerna
-alias lnab='printf "n\n" | yarn lerna publish --no-git-tag-version --no-push --yes=0'
 
 alias cr='cargo run'
 alias cc='cargo check'
@@ -193,15 +172,6 @@ alias cb='cargo build'
 if [ -f ~/.bash_aliases_cspecific ]; then
     . ~/.bash_aliases_cspecific
 fi
-
-# advent of code helpers
-function day () {
-    cd ~/Documents/rust;
-    cargo new advent_day_$1_q1
-    cargo new advent_day_$1_q2
-    cp -v ~/Documents/rust/advent_template.rs ~/Documents/rust/advent_day_$1_q1/src/main.rs
-    cd ~/Documents/rust/advent_day_$1_q1
-}
 
 # run postgres locally
 alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
