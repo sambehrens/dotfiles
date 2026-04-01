@@ -177,6 +177,9 @@ fi
 alias pg='pg_ctl -D /opt/homebrew/var/postgresql@16 start'
 alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
 
+# claude/ai
+alias cl='claude --enable-auto-mode'
+
 mr () {
   commit_message=$(git log -1 --pretty=%B)
   if [[ -z "$commit_message" ]]; then
@@ -185,14 +188,14 @@ mr () {
   fi
   branch_name=$(echo "$commit_message" | tr '[:upper:]' '[:lower:]' | tr -s '[:space:]' '-' | tr -cd '[:alnum:]-')
   branch_name="${branch_name%-}"
-  git checkout -b "$branch_name"
-  glab mr create --fill --yes --squash-before-merge --remove-source-branch
-  git checkout main
   git diff --exit-code --quiet
   if [[ $? -ne 0 ]]; then
     git stash
     stash_created=true
   fi
+  git checkout -b "$branch_name"
+  glab mr create --fill --yes --squash-before-merge --remove-source-branch
+  git checkout main
   git reset --hard @{upstream}
   if [[ "$stash_created" == true ]]; then
     git stash apply
