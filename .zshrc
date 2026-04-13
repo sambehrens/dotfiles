@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/Users/sbehrens/.local/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
 
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
 export JAVA_HOME=~/Library/Java/JavaVirtualMachines/corretto-17.0.13/Contents/Home
