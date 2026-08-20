@@ -179,6 +179,9 @@ alias pgs='pg_ctl -D /opt/homebrew/var/postgresql@16 stop'
 
 # claude/ai
 alias cl='claude --enable-auto-mode'
+alias oc='opencode'
+
+alias idea='open -a "IntelliJ IDEA.app"'
 
 mr () {
   commit_message=$(git log -1 --pretty=%B)
