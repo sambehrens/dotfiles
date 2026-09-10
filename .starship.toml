@@ -23,6 +23,7 @@ deleted_style = "red"
 
 [git_status]
 stashed = ""
+untracked = ""
 style = "bold yellow"
 
 [package]

@@ -199,12 +199,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,underline"
 # set cursor to insert mode
 VI_MODE_SET_CURSOR=true
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export STARSHIP_CONFIG=~/.starship.toml
 eval "$(starship init zsh)"
-
-enable-fzf-tab
+# The right prompt is empty; avoid launching a second Starship process.
+RPROMPT=''
 
 # Created by `userpath` on 2022-05-14 00:42:28
 export PATH="$PATH:/Users/sambehrens/.local/bin"
@@ -217,7 +215,8 @@ export PATH="$PNPM_HOME:$PATH"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# Rehash after installing new executables, not on every shell startup.
+eval "$(pyenv init - zsh --no-rehash)"
 
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
@@ -228,9 +227,8 @@ jdk() {
   java -version
 }
 
-# apple key repeat settings
-defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
-# don't show the accent letters when holding a character down
+# Apply keyboard preferences automatically on shell startup.
+defaults write -g InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # bun completions
